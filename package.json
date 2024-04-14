@@ -1,13 +1,12 @@
 {
 	"name": "mcstatus-discordbot",
-	"version": "1.0.0",
+	"version": "2024.04.13",
 	"description": "A simple Discord.js bot that pings Minecraft servers using the \"mcping-js\" node module.",
 	"engines": {
 		"node": "20.x"
 	},
 	"scripts": {
 		"start": "node index.js",
-		"postinstall": "if test \"$NODE_ENV\" = \"production\"; then npx patch-package; fi;",
 		"format": "prettier --write .",
 		"deployCommands": "npx run-func ./functions/deployCommands.js deployCommands"
 	},
@@ -20,10 +19,9 @@
 		"discord.js": "^14.7.1",
 		"dotenv": "^16.0.3",
 		"mongoose": "^8.1.1",
-		"node-mcstatus": "^1.0.2",
-		"patch-package": "^8.0.0",
-		"unidecode": "^0.1.8",
-		"utf-8-validate": "^5.0.10",
+		"node-mcstatus": "^1.2.0",
+		"unidecode": "^1.0.1",
+		"utf-8-validate": "^6.0.3",
 		"validator": "^13.9.0",
 		"zlib-sync": "^0.1.9"
 	},

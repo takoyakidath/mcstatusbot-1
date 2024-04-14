@@ -3,6 +3,10 @@ import { statusBedrock, statusJava } from 'node-mcstatus';
 import unidecode from 'unidecode';
 import { validateHost } from './validateHost.js';
 
+const options = {
+	baseURL: 'http://127.0.0.1:3001'
+};
+
 export async function getServerStatus(server) {
 	if (!validateHost(server.ip)) {
 		throw new Error('Invalid server IP');
@@ -13,7 +17,7 @@ export async function getServerStatus(server) {
 	port = parseInt(port) || undefined;
 
 	let startTime = Date.now();
-	let response = server.platform == 'bedrock' ? await statusBedrock(ip, port) : await statusJava(ip, port);
+	let response = server.platform == 'bedrock' ? await statusBedrock(ip, port, options) : await statusJava(ip, port, options);
 	let latency = Date.now() - startTime + ' ms';
 
 	// Final check for valid response, incase our validation missed something
