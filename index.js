@@ -23,7 +23,7 @@ manager.extend(
 	})
 );
 
-manager.on('clusterReady', (cluster) => beaver.log('sharding', `Ready cluster ${cluster.id}`));
+manager.on('clusterCreate', (cluster) => beaver.log('sharding', `Created cluster ${cluster.id}`));
 
 async function spawnShards() {
 	await manager.spawn();
