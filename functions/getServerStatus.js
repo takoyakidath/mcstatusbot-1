@@ -4,8 +4,8 @@ import unidecode from 'unidecode';
 import { validateHost } from './validateHost.js';
 
 const options = {
-    baseURL: 'http://127.0.0.1:3001'
-}
+	baseURL: 'http://127.0.0.1:3001'
+};
 
 export async function getServerStatus(server) {
 	if (!validateHost(server.ip)) {
