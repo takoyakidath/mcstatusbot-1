@@ -13,13 +13,11 @@ bot to your server.
 **Enjoying our bot?** Our bot is completely free to use, and will always remain so. A [donation](https://www.buymeacoffee.com/rahulrao) of any amount helps keep
 our server running!
 
-## February 2024 Update
+## April 2024 Minor Update
 
--   New backend log service for better error handling on our end.
--   Minor stability update for most commands.
--   Core package upgrades.
--   Implement transitory code to new backend framework.
--   Various bugfixes.
+-   Implement heartbeat system so shards are restarted automatically if something happens
+-   Package updates on bot
+-   Preparation for additional features to come
 
 ## Features
 
