@@ -5,18 +5,42 @@ import { findDefaultServer, findServer } from '../functions/findServer.js';
 import { getServerStatus } from '../functions/getServerStatus.js';
 import { isValidServer, noMonitoredServers } from '../functions/inputValidation.js';
 import { embedColor, sendMessage } from '../functions/sendMessage.js';
+import {
+	MOTDLocalizations,
+	descriptionLocalizations,
+	errorMessageLocalizations,
+	latencyLocalizations,
+	nameLocalizations,
+	noMOTDLocalizations,
+	noPlayersLocalizations,
+	noServerVersionLocalizations,
+	platformDescriptionLocalizations,
+	platformLocalizations,
+	playersOnlineLocalizations,
+	serverDescriptionLocalizations,
+	serverLocalizations,
+	serverOfflineLocalizations,
+	serverVersionLocalizations,
+	statusForLocalizations
+} from '../localizations/status.js';
 
 // prettier-ignore
 export const data = new SlashCommandBuilder()
 	.setName('status')
+    .setNameLocalizations(nameLocalizations)
 	.setDescription('Displays the current status and active players for any server')
+    .setDescriptionLocalizations(descriptionLocalizations)
 	.addStringOption((option) => option
 		.setName('server')
+        .setNameLocalizations(serverLocalizations)
 		.setDescription('Server IP address or nickname')
+        .setDescriptionLocalizations(serverDescriptionLocalizations)
 		.setRequired(false))
 	.addStringOption((option) => option
 		.setName('platform')
+        .setNameLocalizations(platformLocalizations)
 		.setDescription('Server platform')
+        .setDescriptionLocalizations(platformDescriptionLocalizations)
 		.setRequired(false)
 		.setChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' }));
 
@@ -53,24 +77,32 @@ export async function execute(interaction) {
 			}),
 			error
 		);
-		await sendMessage(interaction, 'There was an error pinging the server. Please verify the server address, and try again in a few seconds!');
+		await sendMessage(
+			interaction,
+			errorMessageLocalizations[interaction.locale] ??
+				'There was an error pinging the server. Please verify the server address, and try again in a few seconds!'
+		);
 		return;
 	}
 
 	// Message if server is offline
 	if (!serverStatus.online) {
-		await sendMessage(interaction, `*The server is offline!*`, `Status for ${server.ip}:`);
+		await sendMessage(
+			interaction,
+			serverOfflineLocalizations[interaction.locale] ?? `*The server is offline!*`,
+			`${statusForLocalizations[interaction.locale] ?? 'Status for'} ${server.ip}:`
+		);
 		return;
 	}
 
 	// Message if server is online
 	let message;
 	if (!serverStatus.players.online) {
-		message = `*No one is playing!*`;
+		message = noPlayersLocalizations[interaction.locale] ?? `*No one is playing!*`;
 	} else {
 		let playerList = serverStatus.players.list?.map((player) => player.name_clean) || [];
 
-		message = `**${serverStatus.players.online || 0}/${serverStatus.players.max}** player(s) online.`;
+		message = `**${serverStatus.players.online || 0}/${serverStatus.players.max}** ${playersOnlineLocalizations[interaction.locale] ?? 'player(s) online.'}`;
 		if (playerList.length) message += `\n\n ${playerList.sort().join(', ')}`;
 	}
 
@@ -79,9 +111,13 @@ export async function execute(interaction) {
 		.setColor(embedColor)
 		.setDescription(message)
 		.addFields(
-			{ name: 'MOTD:', value: serverStatus.motd.clean || 'None' },
-			{ name: 'Server version:', value: serverStatus.version.name || 'Not specified', inline: true },
-			{ name: 'Latency:', value: serverStatus.latency, inline: true }
+			{ name: MOTDLocalizations[interaction.locale] ?? 'MOTD:', value: serverStatus.motd.clean || (noMOTDLocalizations[interaction.locale] ?? 'None') },
+			{
+				name: serverVersionLocalizations[interaction.locale] ?? 'Server version:',
+				value: serverStatus.version.name || (noServerVersionLocalizations[interaction.locale] ?? 'Not specified'),
+				inline: true
+			},
+			{ name: latencyLocalizations[interaction.locale] ?? 'Latency:', value: serverStatus.latency, inline: true }
 		);
 
 	// Set thumbnail to server icon

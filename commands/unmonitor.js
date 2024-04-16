@@ -6,14 +6,29 @@ import { deleteServer, deleteServers, getServers } from '../functions/databaseFu
 import { findDefaultServer, findServer } from '../functions/findServer.js';
 import { isNotMonitored, isServerUnspecified, noMonitoredServers, removingDefaultServer } from '../functions/inputValidation.js';
 import { sendMessage } from '../functions/sendMessage.js';
+import {
+	deletionErrorLocalizations,
+	descriptionLocalizations,
+	errorMessageLocalizations,
+	nameLocalizations,
+	noChannelSpecifiedErrorLocalizations,
+	serverDescriptionLocalizations,
+	serverLocalizations,
+	successMessageLocalizations,
+	unmonitoringErrorLocalizations
+} from '../localizations/unmonitor.js';
 
 // prettier-ignore
 export const data = new SlashCommandBuilder()
 	.setName('unmonitor')
+    .setNameLocalizations(nameLocalizations)
 	.setDescription('Unmonitor the specified server or all servers')
+    .setDescriptionLocalizations(descriptionLocalizations)
 	.addStringOption((option) => option
 		.setName('server')
+        .setNameLocalizations(serverLocalizations)
 		.setDescription('Server IP address or nickname')
+        .setDescriptionLocalizations(serverDescriptionLocalizations)
 		.setRequired(false))
 	.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
 	.setDMPermission(false);
@@ -63,7 +78,7 @@ export async function execute(interaction) {
 		deleteServers(interaction.guildId, unmonitoredServers);
 
 		if (!notUnmonitored.length && !notDeleted.length) {
-			await sendMessage(interaction, 'The channels have successfully been removed.');
+			await sendMessage(interaction, successMessageLocalizations[interaction.locale] ?? 'The server has successfully been unmonitored.');
 		} else {
 			let notUnmonitoredList = notUnmonitored
 				.map((server) => {
@@ -73,16 +88,19 @@ export async function execute(interaction) {
 			let notDeletedList = notDeleted.join(', ');
 			await sendMessage(
 				interaction,
-				`There was an error while unmonitoring some of the servers!
+				errorMessageLocalizations[interaction.locale].default ??
+					`There was an error while unmonitoring some of the servers!
 				${
 					notUnmonitored.length
-						? `
+						? errorMessageLocalizations[interaction.locale].notUnmonitored ??
+							`
 				The following servers need the required category and/or channel permissions before you can unmonitor them:\n
 				${notUnmonitoredList}`
 						: ''
 				} ${
 					notDeleted.length
-						? `
+						? errorMessageLocalizations[interaction.locale].notDeleted ??
+							`
 				The following servers were unmonitored, but the channels need to be removed manually:\n
 				${notDeletedList}`
 						: ''
@@ -130,18 +148,24 @@ export async function execute(interaction) {
 			}),
 			error
 		);
-		await sendMessage(interaction, 'There was an error while unmonitoring the server. Please try again later!');
+		await sendMessage(
+			interaction,
+			unmonitoringErrorLocalizations[interaction.locale] ?? 'There was an error while unmonitoring the server. Please try again later!'
+		);
 		return;
 	}
 
 	try {
 		await removeChannels(server, interaction.guild);
 	} catch (error) {
-		await sendMessage(interaction, 'There was an error while deleting some of the channels. Please delete them manually!');
+		await sendMessage(
+			interaction,
+			deletionErrorLocalizations[interaction.locale] ?? 'There was an error while deleting some of the channels. Please delete them manually!'
+		);
 		return;
 	}
 
-	await sendMessage(interaction, 'The server has successfully been unmonitored.');
+	await sendMessage(interaction, successMessageLocalizations[interaction.locale] ?? 'The server has successfully been unmonitored.');
 }
 
 async function removeChannels(server, guild) {
@@ -154,7 +178,7 @@ async function removeChannels(server, guild) {
 	await Promise.allSettled(
 		channels.map(async (channel) => {
 			try {
-				if (!channel) throw new Error('No channel specified');
+				if (!channel) throw new Error(noChannelSpecifiedErrorLocalizations[interaction.locale] ?? 'No channel specified');
 				await channel.delete();
 			} catch (error) {
 				beaver.log(
@@ -171,7 +195,10 @@ async function removeChannels(server, guild) {
 		})
 	).then((promises) => {
 		promises.forEach((promise) => {
-			if (promise.status == 'rejected') throw new Error('Error deleting channels');
+			if (promise.status == 'rejected')
+				throw new Error(
+					deletionErrorLocalizations[interaction.locale] ?? 'There was an error while deleting some of the channels. Please delete them manually!'
+				);
 		});
 	});
 }

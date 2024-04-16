@@ -1,6 +1,7 @@
 'use strict';
 import { Events } from 'discord.js';
 import { beaver } from '../functions/consoleLogging.js';
+import { cooldownErrorLocalizations, errorMessageLocalizations } from '../localizations/interactionCreate.js';
 
 export const name = Events.InteractionCreate;
 export const once = false;
@@ -50,10 +51,19 @@ export async function execute(interaction) {
 		if (now < expirationTime) {
 			const expiredTimestamp = Math.round(expirationTime / 1000);
 
-			await interaction.editReply({
-				content: `Please wait. You are on a cooldown for ${expiredTimestamp} seconds.`,
-				ephemeral: true
-			});
+			const localizedError = cooldownErrorLocalizations[interaction.locale];
+
+			if (localizedError) {
+				await interaction.editReply({
+					content: `${localizedError.main} ${expiredTimestamp} ${localizedError.seconds}`,
+					ephemeral: true
+				});
+			} else {
+				await interaction.editReply({
+					content: `Please wait. You are on a cooldown for ${expiredTimestamp} seconds.`,
+					ephemeral: true
+				});
+			}
 
 			return;
 		}
@@ -81,6 +91,7 @@ export async function execute(interaction) {
 
 		await interaction.editReply({
 			content:
+				errorMessageLocalizations[interaction.locale] ??
 				'There was an error while executing this command! Please try again in a few minutes. If the problem persists, please open an issue on GitHub.',
 			ephemeral: true
 		});
