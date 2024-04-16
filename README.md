@@ -1,3 +1,4 @@
+[![Invite to Server](https://img.shields.io/static/v1?label=&message=Invite%20to%20Server&color=forestgreen)](https://discord.com/api/oauth2/authorize?client_id=788083161296273517&permissions=269485072&scope=bot%20applications.commands)
 ![Discord Server Count](https://img.shields.io/endpoint?url=https%3A%2F%2Fmcstatusbot-delegate-production.up.railway.app%2Fcount%2FgetFormatted)
 [![Make A Donation](https://img.shields.io/static/v1?label=&message=Donate&color=d9b811&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/rahulrao)
 [![Visit our website](https://img.shields.io/static/v1?label=&message=Website&color=purple)](https://mcstatusbot.com/)
@@ -27,8 +28,17 @@ our server running!
 -   Check the status of non-monitored servers
 -   Slash command support with ephemeral responses to prevent channels from being cluttered with commands
 
+<br>
+<table>
+<tr>
+<td>
 <img src="./assets/channels.png" height="200" />
+</td>
+<td>
 <img src="./assets/status.png" height="200" />
+</td>
+</tr>
+</table>
 
 ## Usage
 
@@ -53,11 +63,4 @@ our server running!
 -   [ ] Add option to monitor server with message embed instead of voice channels
 -   [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
 -   [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
-
-### Backend Updates
-
--   [x] Queue priority for non-update commands
--   [x] Minimize redundant channel updates
--   [x] Fix channel permission query
--   [x] Error logging rework
--   [x] Update readme with screenshots
+-   [ ] Add translations

@@ -23,9 +23,10 @@ manager.extend(
 	})
 );
 
-manager.on('clusterReady', (cluster) => beaver.log('sharding', `Ready cluster ${cluster.id}`));
+manager.on('clusterCreate', (cluster) => beaver.log('sharding', `Created cluster ${cluster.id}`));
 
 async function spawnShards() {
+	beaver.log('sharding', `Starting bot!`);
 	await manager.spawn();
 	setInterval(reclusterShards, 24 * 60 * 60 * 1000);
 }

@@ -23,6 +23,8 @@ if (process.env.NODE_ENV == 'production') {
 export let client = new Client(clientOptions);
 
 client.cluster = new ClusterClient(client);
+client.cooldowns = new Collection();
+client.commands = new Collection();
 
 let clientReady = false;
 let clusterReady = false;
@@ -54,7 +56,6 @@ async function init() {
 	}
 
 	// Command Handler
-	client.commands = new Collection();
 	const commandsPath = path.resolve(process.cwd(), './commands');
 	const commandFiles = readdirSync(commandsPath).filter((file) => file.endsWith('.js'));
 	for (const file of commandFiles) {

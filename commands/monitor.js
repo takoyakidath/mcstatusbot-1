@@ -8,26 +8,50 @@ import { getServerStatus } from '../functions/getServerStatus.js';
 import { isMonitored, isNicknameUsed, isValidServer, noMonitoredServers } from '../functions/inputValidation.js';
 import { renameChannels } from '../functions/renameChannels.js';
 import { sendMessage } from '../functions/sendMessage.js';
+import {
+	IPAddressDescriptionLocalizations,
+	IPAddressLocalizations,
+	defaultDescriptionLocalizations,
+	defaultLocalizations,
+	descriptionLocalizations,
+	errorMessageLocalizations,
+	nameLocalizations,
+	nicknameDescriptionLocalizations,
+	nicknameLocalizations,
+	platformDescriptionLocalizations,
+	platformLocalizations,
+	successMessageLocalizations
+} from '../localizations/monitor.js';
 
 // prettier-ignore
 export const data = new SlashCommandBuilder()
 	.setName('monitor')
+    .setNameLocalizations(nameLocalizations)
 	.setDescription('Create 2 voice channels that display the status of a Minecraft server')
+    .setDescriptionLocalizations(descriptionLocalizations)
 	.addStringOption((option) => option
 		.setName('ip')
+        .setNameLocalizations(IPAddressLocalizations)
 		.setDescription('IP address')
+        .setDescriptionLocalizations(IPAddressDescriptionLocalizations)
 		.setRequired(true))
 	.addStringOption((option) => option
 		.setName('nickname')
+        .setNameLocalizations(nicknameLocalizations)
 		.setDescription('Server nickname')
+        .setDescriptionLocalizations(nicknameDescriptionLocalizations)
 		.setRequired(false))
 	.addBooleanOption((option) => option
 		.setName('default')
+        .setNameLocalizations(defaultLocalizations)
 		.setDescription('Set this server to be the default for all commands')
+        .setDescriptionLocalizations(defaultDescriptionLocalizations)
 		.setRequired(false))
 	.addStringOption((option) => option
 		.setName('platform')
+        .setNameLocalizations(platformLocalizations)
 		.setDescription('Server platform')
+        .setDescriptionLocalizations(platformDescriptionLocalizations)
 		.setRequired(false)
 		.setChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' })
 	)
@@ -80,7 +104,11 @@ export async function execute(interaction) {
 		server.categoryId = category.id;
 	} catch (error) {
 		beaver.log('monitor', `Error creating category channel in guild: ${interaction.guildId}`, error);
-		await sendMessage(interaction, 'There was an error while creating the channels!');
+		await sendMessage(
+			interaction,
+			errorMessageLocalizations[interaction.locale] ??
+				'There was an error while creating the channels, please manually delete any channels that were created!'
+		);
 		return;
 	}
 
@@ -118,7 +146,11 @@ export async function execute(interaction) {
 				})
 			);
 			beaver.log('monitor', `Error creating voice channel in guild: ${interaction.guildId}`, error);
-			await sendMessage(interaction, 'There was an error while creating the channels, please manually delete any channels that were created!');
+			await sendMessage(
+				interaction,
+				errorMessageLocalizations[interaction.locale] ??
+					'There was an error while creating the channels, please manually delete any channels that were created!'
+			);
 			return;
 		}
 	}
@@ -128,7 +160,9 @@ export async function execute(interaction) {
 
 	await sendMessage(
 		interaction,
-		`The server has successfully been monitored${interaction.options.getBoolean('default') ? ' and set as the default server.' : '.'}`
+		interaction.interaction.options.getBoolean('default')
+			? successMessageLocalizations[interaction.locale].default ?? 'Server successfully monitored and set as the default server!'
+			: successMessageLocalizations[interaction.locale].main ?? 'Server successfully monitored!'
 	);
 
 	// Get the server status and update the channels

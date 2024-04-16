@@ -5,18 +5,35 @@ import { beaver } from '../functions/consoleLogging.js';
 import { findDefaultServer, findServer } from '../functions/findServer.js';
 import { isNicknameUsed, isNotMonitored, noMonitoredServers } from '../functions/inputValidation.js';
 import { sendMessage } from '../functions/sendMessage.js';
+import {
+	descriptionLocalizations,
+	errorMessageLocalizations,
+	nameLocalizations,
+	nicknameDescriptionLocalizations,
+	nicknameLocalizations,
+	rateLimitErrorLocalizations,
+	serverDescriptionLocalizations,
+	serverLocalizations,
+	successMessageLocalizations
+} from '../localizations/nickname.js';
 
 // prettier-ignore
 export const data = new SlashCommandBuilder()
 	.setName('nickname')
+    .setNameLocalizations(nameLocalizations)
 	.setDescription('Change the nickname of a monitored Minecraft server')
+    .setDescriptionLocalizations(descriptionLocalizations)
 	.addStringOption((option) => option
 		.setName('nickname')
+        .setNameLocalizations(nicknameLocalizations)
 		.setDescription('Server nickname')
+        .setDescriptionLocalizations(nicknameDescriptionLocalizations)
 		.setRequired(true))
 	.addStringOption((option) => option
 		.setName('server')
+        .setNameLocalizations(serverLocalizations)
 		.setDescription('Server IP address or nickname')
+        .setDescriptionLocalizations(serverDescriptionLocalizations)
 		.setRequired(false))
 	.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
 	.setDMPermission(false);
@@ -43,7 +60,11 @@ export async function execute(interaction) {
 		await channel?.setName(interaction.options.getString('nickname'));
 	} catch (error) {
 		if (error.name.includes('RateLimitError')) {
-			await sendMessage(interaction, 'The rate limit for this channel has been reached, please try renaming this server in a few minutes!');
+			await sendMessage(
+				interaction,
+				rateLimitErrorLocalizations[interaction.locale] ??
+					'The rate limit for this channel has been reached, please try renaming this server in a few minutes!'
+			);
 		} else {
 			beaver.log(
 				'nickname',
@@ -54,10 +75,14 @@ export async function execute(interaction) {
 				}),
 				error
 			);
-			await sendMessage(interaction, 'There was an error while renaming the channel!');
+			await sendMessage(interaction, errorMessageLocalizations[interaction.locale] ?? 'There was an error while renaming the channel!');
 		}
 		return;
 	}
 
-	await sendMessage(interaction, "The server has successfully been renamed. It might take a few seconds to show up due to Discord's API limitations.");
+	await sendMessage(
+		interaction,
+		successMessageLocalizations[interaction.locale] ??
+			"The server has successfully been renamed. It might take a few seconds to show up due to Discord's API limitations."
+	);
 }

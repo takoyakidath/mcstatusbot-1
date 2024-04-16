@@ -1,4 +1,5 @@
 'use strict';
+import { onlineStatusLocalizations } from '../localizations/renameChannels.js';
 import { beaver } from './consoleLogging.js';
 
 function errorHandler(error, message) {

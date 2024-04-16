@@ -1,4 +1,5 @@
 'use strict';
+import { needsPermissionsLocalizations } from '../localizations/botPermissions.js';
 import { sendMessage } from './sendMessage.js';
 
 const requiredPermissions = [
@@ -13,13 +14,18 @@ export async function isMissingPermissions(type, object, interaction) {
 
 	const missingPermissions = getMissingPermissions(type, object);
 	if (missingPermissions) {
-		interaction &&
-			(await sendMessage(
-				interaction,
-				`The bot needs the following permissions in the ${type.toLowerCase()} to use this command:
-  
-			  ${missingPermissions}`
-			));
+		if (interaction) {
+			const localizedError = needsPermissionsLocalizations[interaction.locale];
+
+			if (localizedError) {
+				await sendMessage(interaction, `${localizedError.main} ${type.toLowerCase()} ${localizedError.secondary} ${missingPermissions}`);
+			} else {
+				await sendMessage(
+					interaction,
+					`The bot needs the following permissions in the ${type.toLowerCase()} to use this command: ${missingPermissions}`
+				);
+			}
+		}
 		return true;
 	}
 
