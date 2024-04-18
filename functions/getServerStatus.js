@@ -27,7 +27,11 @@ export async function getServerStatus(server) {
 
 	// Use the clean name where possible
 	if (response.online) {
-		response.version.name = response.version.name_clean || response.version.name;
+		if (response.version) {
+			response.version.name = response.version.name_clean || response.version.name;
+		} else {
+			response.version = { name: 'Unknown Version' };
+		}
 	}
 
 	return { ...response, latency };
