@@ -26,7 +26,7 @@ export async function noMonitoredServers(guildId, interaction, isStatusCommand) 
 			const localizedError = noMonitoredServersLocalizations[interaction.locale];
 
 			if (localizedError) {
-				await sendMessage(interaction, `${localizedError.main}${isStatusCommand ? localizedError.secondary : '!'}`);
+				await sendMessage(interaction, `${localizedError[1]}${isStatusCommand ? localizedError[2] : '!'}`);
 			} else {
 				await sendMessage(interaction, `There are no monitored servers${isStatusCommand ? ' and no IP address was specified!' : '!'}`);
 			}
@@ -146,7 +146,7 @@ export async function isValidServer(server, interaction) {
 			const localizedError = invalidServerLocalizations[interaction.locale];
 
 			if (localizedError) {
-				await sendMessage(interaction, `${localizedError.main} ${server.includes('_') ? localizedError.secondary : ''}`);
+				await sendMessage(interaction, `${localizedError[1]} ${server.includes('_') ? localizedError[2] : ''}`);
 			} else {
 				await sendMessage(interaction, `This is not a valid IP address or domain name ${server.includes('_') ? '(underscores are not allowed)!' : ''}`);
 			}

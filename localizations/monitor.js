@@ -44,7 +44,7 @@ export const errorMessageLocalizations = {
 
 export const successMessageLocalizations = {
 	de: {
-		main: 'Server erfolgreich überwacht!',
+		notDefault: 'Server erfolgreich überwacht!',
 		default: 'Server erfolgreich überwacht und als Standardserver festgelegt!'
 	}
 };

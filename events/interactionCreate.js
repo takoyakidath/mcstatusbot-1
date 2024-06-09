@@ -55,7 +55,7 @@ export async function execute(interaction) {
 
 			if (localizedError) {
 				await interaction.editReply({
-					content: `${localizedError.main} ${expiredTimestamp} ${localizedError.seconds}`,
+					content: `${localizedError[1]} ${expiredTimestamp} ${localizedError[2]}`,
 					ephemeral: true
 				});
 			} else {
