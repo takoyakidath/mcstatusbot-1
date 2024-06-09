@@ -4,7 +4,7 @@ import unidecode from 'unidecode';
 import { validateHost } from './validateHost.js';
 
 const options = {
-	baseURL: 'http://127.0.0.1:3001'
+	baseURL: process.env.NODE_ENV == 'production' ? 'http://127.0.0.1:3001' : 'https://api.mcstatus.io/v2'
 };
 
 export async function getServerStatus(server) {

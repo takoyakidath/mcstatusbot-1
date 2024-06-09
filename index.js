@@ -18,7 +18,7 @@ let manager = new ClusterManager('./bot.js', {
 manager.extend(new ReClusterManager());
 manager.extend(
 	new HeartbeatManager({
-		interval: 10000,
+		interval: 12000,
 		maxMissedHeartbeats: 5
 	})
 );

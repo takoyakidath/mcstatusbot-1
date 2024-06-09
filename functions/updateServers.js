@@ -1,4 +1,5 @@
 'use strict';
+import 'dotenv/config';
 import { beaver } from './consoleLogging.js';
 import { getServers } from './databaseFunctions.js';
 import { getServerStatus } from './getServerStatus.js';
@@ -6,7 +7,7 @@ import { renameChannels } from './renameChannels.js';
 
 export async function updateServers(client) {
 	// Update server count badge on remote
-	if (client.cluster.id == 0) {
+	if (process.env.NODE_ENV == 'production' && client.cluster.id == 0) {
 		try {
 			let serverCountByShard = await client.cluster.fetchClientValues('guilds.cache.size');
 			let serverCount = serverCountByShard.reduce((totalGuilds, shardGuilds) => totalGuilds + shardGuilds, 0);

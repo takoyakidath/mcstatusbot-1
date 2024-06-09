@@ -1,5 +1,5 @@
 'use strict';
-import { Events } from 'discord.js';
+import { Collection, Events } from 'discord.js';
 import { beaver } from '../functions/consoleLogging.js';
 import { cooldownErrorLocalizations, errorMessageLocalizations } from '../localizations/interactionCreate.js';
 

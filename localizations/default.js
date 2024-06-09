@@ -7,7 +7,7 @@ export const descriptionLocalizations = {
 };
 
 export const serverOptionLocalizations = {
-	de: 'Server IP-Adresse oder Spitzname'
+	de: 'server ip-adresse oder spitzname'
 };
 
 export const defaultServerLocalizations = {

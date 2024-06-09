@@ -107,7 +107,7 @@ export async function execute(interaction) {
 	}
 
 	const responseEmbed = new EmbedBuilder()
-		.setTitle(`Status for ${server.ip}:`)
+		.setTitle(`${statusForLocalizations[interaction.locale] ?? 'Status for'} ${server.ip}:`)
 		.setColor(embedColor)
 		.setDescription(message)
 		.addFields(

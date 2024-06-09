@@ -15,7 +15,7 @@ export const IPAddressDescriptionLocalizations = {
 };
 
 export const nicknameLocalizations = {
-	de: 'Spitzname'
+	de: 'spitzname'
 };
 
 export const nicknameDescriptionLocalizations = {
@@ -23,7 +23,7 @@ export const nicknameDescriptionLocalizations = {
 };
 
 export const defaultLocalizations = {
-	de: 'Standard'
+	de: 'standard'
 };
 
 export const defaultDescriptionLocalizations = {
@@ -31,7 +31,7 @@ export const defaultDescriptionLocalizations = {
 };
 
 export const platformLocalizations = {
-	de: 'Plattform'
+	de: 'plattform'
 };
 
 export const platformDescriptionLocalizations = {
