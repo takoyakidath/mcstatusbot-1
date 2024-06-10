@@ -4,7 +4,7 @@ import unidecode from 'unidecode';
 import { validateHost } from './validateHost.js';
 
 const options = {
-	baseURL: 'http://127.0.0.1:3001'
+	baseURL: process.env.NODE_ENV == 'production' ? 'http://127.0.0.1:3001' : 'https://api.mcstatus.io/v2'
 };
 
 export async function getServerStatus(server) {
@@ -27,7 +27,11 @@ export async function getServerStatus(server) {
 
 	// Use the clean name where possible
 	if (response.online) {
-		response.version.name = response.version.name_clean || response.version.name;
+		if (response.version) {
+			response.version.name = response.version.name_clean || response.version.name;
+		} else {
+			response.version = { name: 'Unknown Version' };
+		}
 	}
 
 	return { ...response, latency };

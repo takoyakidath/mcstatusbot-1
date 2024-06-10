@@ -1,5 +1,5 @@
 export const nameLocalizations = {
-	de: 'Spitzname'
+	de: 'spitzname'
 };
 
 export const descriptionLocalizations = {
@@ -7,7 +7,7 @@ export const descriptionLocalizations = {
 };
 
 export const nicknameLocalizations = {
-	de: 'Spitzname'
+	de: 'spitzname'
 };
 
 export const nicknameDescriptionLocalizations = {
@@ -15,7 +15,7 @@ export const nicknameDescriptionLocalizations = {
 };
 
 export const serverLocalizations = {
-	de: 'Server'
+	de: 'server'
 };
 
 export const serverDescriptionLocalizations = {

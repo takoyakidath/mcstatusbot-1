@@ -1,7 +1,7 @@
 export const noMonitoredServersLocalizations = {
 	de: {
-		main: 'Es gibt keine überwachten Server',
-		secondary: ' und es wurde keine IP-Adresse angegeben!'
+		1: 'Es gibt keine überwachten Server',
+		2: ' und es wurde keine IP-Adresse angegeben!'
 	}
 };
 
@@ -47,7 +47,7 @@ export const removingDefaultServerLocalizations = {
 
 export const invalidServerLocalizations = {
 	de: {
-		main: 'Dies ist keine gültige IP-Adresse oder kein gültiger Domänenname',
-		secondary: '(underscores are not allowed)!'
+		1: 'Dies ist keine gültige IP-Adresse oder kein gültiger Domänenname',
+		2: '(underscores are not allowed)!'
 	}
 };

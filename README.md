@@ -29,7 +29,7 @@ our server running!
 -   Slash command support with ephemeral responses to prevent channels from being cluttered with commands
 
 <br>
-<table>
+<table style='border: none'>
 <tr>
 <td>
 <img src="./assets/channels.png" height="200" />

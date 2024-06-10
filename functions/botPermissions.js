@@ -18,7 +18,7 @@ export async function isMissingPermissions(type, object, interaction) {
 			const localizedError = needsPermissionsLocalizations[interaction.locale];
 
 			if (localizedError) {
-				await sendMessage(interaction, `${localizedError.main} ${type.toLowerCase()} ${localizedError.secondary} ${missingPermissions}`);
+				await sendMessage(interaction, `${localizedError[1]} ${type.toLowerCase()} ${localizedError[2]} ${missingPermissions}`);
 			} else {
 				await sendMessage(
 					interaction,

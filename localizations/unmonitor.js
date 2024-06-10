@@ -7,7 +7,7 @@ export const descriptionLocalizations = {
 };
 
 export const serverLocalizations = {
-	de: 'Server'
+	de: 'server'
 };
 
 export const serverDescriptionLocalizations = {

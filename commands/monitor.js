@@ -160,9 +160,9 @@ export async function execute(interaction) {
 
 	await sendMessage(
 		interaction,
-		interaction.interaction.options.getBoolean('default')
-			? successMessageLocalizations[interaction.locale].default ?? 'Server successfully monitored and set as the default server!'
-			: successMessageLocalizations[interaction.locale].main ?? 'Server successfully monitored!'
+		interaction.options.getBoolean('default')
+			? successMessageLocalizations[interaction.locale]?.default ?? 'Server successfully monitored and set as the default server!'
+			: successMessageLocalizations[interaction.locale]?.notDefault ?? 'Server successfully monitored!'
 	);
 
 	// Get the server status and update the channels

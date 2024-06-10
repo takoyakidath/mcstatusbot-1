@@ -1,7 +1,7 @@
 export const cooldownErrorLocalizations = {
 	de: {
-		main: 'Bitte warten. Sie sind für',
-		seconds: 'Sekunden auf Abklingzeit.'
+		1: 'Bitte warten. Sie sind für',
+		2: 'Sekunden auf Abklingzeit.'
 	}
 };
 

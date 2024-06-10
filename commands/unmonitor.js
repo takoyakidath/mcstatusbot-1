@@ -88,18 +88,18 @@ export async function execute(interaction) {
 			let notDeletedList = notDeleted.join(', ');
 			await sendMessage(
 				interaction,
-				errorMessageLocalizations[interaction.locale].default ??
+				errorMessageLocalizations[interaction.locale]?.default ??
 					`There was an error while unmonitoring some of the servers!
 				${
 					notUnmonitored.length
-						? errorMessageLocalizations[interaction.locale].notUnmonitored ??
+						? errorMessageLocalizations[interaction.locale]?.notUnmonitored ??
 							`
 				The following servers need the required category and/or channel permissions before you can unmonitor them:\n
 				${notUnmonitoredList}`
 						: ''
 				} ${
 					notDeleted.length
-						? errorMessageLocalizations[interaction.locale].notDeleted ??
+						? errorMessageLocalizations[interaction.locale]?.notDeleted ??
 							`
 				The following servers were unmonitored, but the channels need to be removed manually:\n
 				${notDeletedList}`

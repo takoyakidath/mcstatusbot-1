@@ -1,5 +1,5 @@
 'use strict';
-import { Events } from 'discord.js';
+import { Collection, Events } from 'discord.js';
 import { beaver } from '../functions/consoleLogging.js';
 import { cooldownErrorLocalizations, errorMessageLocalizations } from '../localizations/interactionCreate.js';
 
@@ -55,7 +55,7 @@ export async function execute(interaction) {
 
 			if (localizedError) {
 				await interaction.editReply({
-					content: `${localizedError.main} ${expiredTimestamp} ${localizedError.seconds}`,
+					content: `${localizedError[1]} ${expiredTimestamp} ${localizedError[2]}`,
 					ephemeral: true
 				});
 			} else {
