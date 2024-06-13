@@ -14,7 +14,7 @@ To add new localizations:
 
     - We are only able to support languages recognised by Discord. If Discord does not have a locale for your language, our bot cannot support it. Any pull requests using a language code outside the Discord supported list will be rejected.
 
-3. Make a new branch for your locale code - `git checkout -b <your_locale_code_here>`
+3. Make a new branch for your changes using the following pattern (github username_locale code) - `git checkout -b <github username_locale code>`
 
 4. Make changes to locale files - These files are located in the localizations folder. Open each file and add a new entry in each exported variable for your language using the pre-existing example.
 
