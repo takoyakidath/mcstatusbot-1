@@ -1,3 +1,4 @@
+// Must be lowercase and not contain any spaces
 export const nameLocalizations = {
 	de: 'spitzname'
 };
@@ -6,6 +7,7 @@ export const descriptionLocalizations = {
 	de: 'Ändern Sie den Spitznamen eines überwachten Minecraft-Servers'
 };
 
+// Must be lowercase and not contain any spaces
 export const nicknameLocalizations = {
 	de: 'spitzname'
 };
@@ -14,6 +16,7 @@ export const nicknameDescriptionLocalizations = {
 	de: 'Server-Spitzname'
 };
 
+// Must be lowercase and not contain any spaces
 export const serverLocalizations = {
 	de: 'server'
 };

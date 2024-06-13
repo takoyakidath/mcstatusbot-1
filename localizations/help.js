@@ -1,3 +1,4 @@
+// Must be lowercase and not contain any spaces
 export const nameLocalizations = {
 	de: 'hilfe'
 };

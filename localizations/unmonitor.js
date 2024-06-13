@@ -1,3 +1,4 @@
+// Must be lowercase and not contain any spaces
 export const nameLocalizations = {
 	de: 'unmonitor'
 };
@@ -6,6 +7,7 @@ export const descriptionLocalizations = {
 	de: 'Entfernen Sie einen überwachten Minecraft-Server'
 };
 
+// Must be lowercase and not contain any spaces
 export const serverLocalizations = {
 	de: 'server'
 };

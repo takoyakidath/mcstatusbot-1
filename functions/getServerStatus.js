@@ -1,4 +1,5 @@
 'use strict';
+import 'dotenv/config';
 import { statusBedrock, statusJava } from 'node-mcstatus';
 import unidecode from 'unidecode';
 import { validateHost } from './validateHost.js';

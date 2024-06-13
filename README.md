@@ -14,11 +14,14 @@ bot to your server.
 **Enjoying our bot?** Our bot is completely free to use, and will always remain so. A [donation](https://www.buymeacoffee.com/rahulrao) of any amount helps keep
 our server running!
 
-## April 2024 Minor Update
+**Want to contribute a translation?** Read the [contributing guide]() here.
 
--   Implement heartbeat system so shards are restarted automatically if something happens
+## May/June 2024 Update
+
+-   Various bugfixes after bot migration to new cloud server
 -   Package updates on bot
--   Preparation for additional features to come
+-   Multi-language support! (German for now but more languages to follow)
+-   Added contribution guide for languages
 
 ## Features
 
@@ -27,6 +30,7 @@ our server running!
 -   Support for monitoring multiple Minecraft servers at once
 -   Check the status of non-monitored servers
 -   Slash command support with ephemeral responses to prevent channels from being cluttered with commands
+-   Multiple languages: 🇬🇧 🇩🇪
 
 <br>
 <table style='border: none'>
@@ -42,17 +46,25 @@ our server running!
 
 ## Usage
 
-`/status [server|ip] [type]` Displays the current status and active players for any server \
-`/monitor ip [nickname] [type]` Create 2 voice channels that display the status of a Minecraft server and optionally set a nickname \
-`/nickname nickname [server]` Change the nickname of a monitored Minecraft server \
-`/default server` Set a server to be the default for all commands \
-`/unmonitor [server|all]` Remove the voice channels for the specified server or all servers \
-`/bug` Send a bug report to the developers \
+`/status [server|ip] [type]` Displays the current status and active players for any server
+
+`/monitor ip [nickname] [type]` Create 2 voice channels that display the status of a Minecraft server and optionally set a nickname
+
+`/nickname nickname [server]` Change the nickname of a monitored Minecraft server
+
+`/default server` Set a server to be the default for all commands
+
+`/unmonitor [server|all]` Remove the voice channels for the specified server or all servers
+
+`/bug` Send a bug report to the developers
+
 `/help` List the other commands
 
-**Note for Bedrock servers: to use the `/status` and `/monitor` commands, you must set the `type` option to "Bedrock" for the bot to function correctly.**
+### Usage notes:
 
-**Note for Aternos/other hosting users: Underscores are not allowed in Domain names! Please change your server address to remove underscores.**
+**Bedrock servers:** to use the `/status` and `/monitor` commands, you must set the `type` option to "Bedrock" for the bot to function correctly.
+
+**Aternos/other hosting users:** Underscores are not allowed in Domain names! Please change your server address to remove underscores.
 
 ## Roadmap
 
@@ -63,4 +75,4 @@ our server running!
 -   [ ] Add option to monitor server with message embed instead of voice channels
 -   [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
 -   [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
--   [ ] Add translations
+-   [x] Add localization support
