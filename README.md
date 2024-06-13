@@ -14,7 +14,7 @@ bot to your server.
 **Enjoying our bot?** Our bot is completely free to use, and will always remain so. A [donation](https://www.buymeacoffee.com/rahulrao) of any amount helps keep
 our server running!
 
-**Want to contribute a translation?** Read the [contributing guide]() here.
+**Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
 ## May/June 2024 Update
 
