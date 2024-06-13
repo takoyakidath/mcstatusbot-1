@@ -1,3 +1,4 @@
+// Must be lowercase and not contain any spaces
 export const nameLocalizations = {
 	de: 'status'
 };
@@ -6,6 +7,7 @@ export const descriptionLocalizations = {
 	de: 'Zeigt den aktuellen Status und aktive Spieler für jeden Server an'
 };
 
+// Must be lowercase and not contain any spaces
 export const serverLocalizations = {
 	de: 'server'
 };
@@ -14,6 +16,7 @@ export const serverDescriptionLocalizations = {
 	de: 'Server-IP-Adresse oder Spitzname'
 };
 
+// Must be lowercase and not contain any spaces
 export const platformLocalizations = {
 	de: 'plattform'
 };
@@ -47,7 +50,7 @@ export const MOTDLocalizations = {
 };
 
 export const noMOTDLocalizations = {
-	de: 'Keine'
+	de: 'Keine MOTD'
 };
 
 export const serverVersionLocalizations = {
