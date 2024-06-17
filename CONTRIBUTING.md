@@ -10,7 +10,7 @@ To add new localizations:
 
 1. Clone the repository - `git clone https://github.com/RahulR100/mcstatusbot`
 
-2. Find the Discord locale code for the language you want to add -
+2. Find the Discord locale code for the language you want to add - `https://discord.com/developers/docs/reference#locales`
 
     - We are only able to support languages recognised by Discord. If Discord does not have a locale for your language, our bot cannot support it. Any pull requests using a language code outside the Discord supported list will be rejected.
 
