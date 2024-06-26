@@ -5,6 +5,20 @@ import { getServers } from './databaseFunctions.js';
 import { getServerStatus } from './getServerStatus.js';
 import { renameChannels } from './renameChannels.js';
 
+function handleUpdateError(error, ip, guild) {
+	if (!ip.includes('_')) {
+		beaver.log(
+			'update-servers',
+			'Error pinging Minecraft server while updating servers',
+			JSON.stringify({
+				'Server IP': ip,
+				'Guild ID': guild
+			}),
+			error
+		);
+	}
+}
+
 export async function updateServers(client) {
 	// Update server count badge on remote
 	if (process.env.NODE_ENV == 'production' && client.cluster.id == 0) {
@@ -29,28 +43,22 @@ export async function updateServers(client) {
 	await Promise.allSettled(
 		client.guilds.cache.map(async (guild) => {
 			let serverList = await getServers(guild.id);
+
 			await Promise.allSettled(
 				serverList.map(async (server) => {
 					let serverStatus;
+
 					try {
 						serverStatus = await getServerStatus(server);
 					} catch (error) {
-						if (!server.ip.includes('_')) {
-							beaver.log(
-								'update-servers',
-								'Error pinging Minecraft server while updating servers',
-								JSON.stringify({
-									'Server IP': server.ip,
-									'Guild ID': guild.id
-								}),
-								error
-							);
-						}
+						handleUpdateError(error, server.ip, guild.id);
 					}
+
 					const channels = [
 						{ object: await guild.channels.cache.get(server.statusId), type: 'status' },
 						{ object: await guild.channels.cache.get(server.playersId), type: 'players' }
 					];
+
 					await renameChannels(channels, serverStatus, 'low_priority');
 				})
 			);
