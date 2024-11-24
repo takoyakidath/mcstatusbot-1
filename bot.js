@@ -8,6 +8,7 @@ import path, { basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { beaver } from './functions/consoleLogging.js';
 import { updateServers } from './functions/updateServers.js';
+import { updateBadgeCount } from './functions/updateBadgeCount.js';
 
 let clientOptions = {
 	shards: getInfo().SHARD_LIST,
@@ -47,6 +48,7 @@ client.login(process.env.TOKEN);
 async function init() {
 	// Database Handler
 	mongoose.set('strictQuery', true);
+	mongoose.set('debug', false);
 
 	try {
 		await mongoose.connect(process.env.DATABASE_URL, { dbName: process.env.DATABASE_NAME });
@@ -85,4 +87,9 @@ async function init() {
 	if (process.env.NODE_ENV != 'production') await updateServers(client);
 	// Delay the update based on cluster id
 	setTimeout(() => setInterval(updateServers, 6 * 60 * 1000, client), client.cluster.id * 7 * 1000);
+
+	// If first cluster, update the badge count online
+	if (process.env.NODE_ENV == 'production' && client.cluster.id == 0) {
+		setInterval(() => updateBadgeCount(client), 15 * 60 * 1000);
+	}
 }

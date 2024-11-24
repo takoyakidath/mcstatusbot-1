@@ -1,17 +1,20 @@
 // Must be lowercase and not contain any spaces
 export const nameLocalizations = {
 	da: 'hjælp',
-	de: 'hilfe'
+	de: 'hilfe',
+	'es-ES': 'ayuda'
 };
 
 export const descriptionLocalizations = {
 	da: 'Viser en liste over alle kommandoer',
-	de: 'Liste die anderen Befehle auf'
+	de: 'Liste die anderen Befehle auf',
+	'es-ES': 'Muestra una lista de todos los comandos'
 };
 
 export const commandTitleLocalizations = {
 	da: 'Kommandoer:',
-	de: 'Befehle:'
+	de: 'Befehle:',
+	'es-ES': 'Comandos:'
 };
 
 export const listLocalizations = {
@@ -65,6 +68,32 @@ export const listLocalizations = {
 		{
 			name: '/fehler',
 			value: 'Senden Sie einen Fehlerbericht an die Betreuer'
+		}
+	],
+	'es-ES': [
+		{
+			name: '/status [server|ip]',
+			value: 'Muestra el estado actual y los jugadores activos de cada servidor'
+		},
+		{
+			name: '/monitorizar ip [alias] [predeterminado]',
+			value: 'Crea 2 canales de voz que muestran el estado de un servidor de Minecraft y opcionalmente establece un alias'
+		},
+		{
+			name: '/alias alias [server]',
+			value: 'Cambia el alias de un servidor de Minecraft monitorizado'
+		},
+		{
+			name: '/predeterminado [server]',
+			value: 'Establece un servidor para usar como predeterminado para todos los comandos'
+		},
+		{
+			name: '/desmonitorizar [server|all]',
+			value: 'Deja de monitorear el servidor especificado o todos los servidores'
+		},
+		{
+			name: '/error',
+			value: 'Envía un informe de error a los desarrolladores'
 		}
 	]
 };

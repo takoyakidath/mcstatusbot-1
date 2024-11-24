@@ -16,12 +16,13 @@ our server running!
 
 **Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
-## May/June 2024 Update
+## July 2024 Update
 
--   Various bugfixes after bot migration to new cloud server
--   Package updates on bot
--   Multi-language support! (German for now but more languages to follow)
--   Added contribution guide for languages
+-   Making find server internally faster
+-   Package updates on bot and backend
+-   New Languages: 🇩🇰 🇪🇸
+-   Brand new backend proxy (removing old packages no longer maintained)
+-   Custom online and offline indicators
 
 ## Features
 
@@ -30,7 +31,7 @@ our server running!
 -   Support for monitoring multiple Minecraft servers at once
 -   Check the status of non-monitored servers
 -   Slash command support with ephemeral responses to prevent channels from being cluttered with commands
--   Multiple languages: 🇬🇧 🇩🇪
+-   Multiple languages: 🇬🇧 🇩🇪 🇩🇰 🇪🇸
 
 <br>
 <table style='border: none'>
@@ -75,4 +76,5 @@ our server running!
 -   [ ] Add option to monitor server with message embed instead of voice channels
 -   [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
 -   [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
--   [x] Add localization support
+-   [x] Custom online / offline indicators
+-   [ ] Server offline notifications in channel
