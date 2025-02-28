@@ -8,7 +8,7 @@ import path, { basename } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { beaver } from './functions/consoleLogging.js';
 import { updateServers } from './functions/updateServers.js';
-import { updateBadgeCount } from './functions/updateBadgeCount.js';
+import { updateDelegate } from './functions/updateDelegate.js';
 
 let clientOptions = {
 	shards: getInfo().SHARD_LIST,
@@ -88,8 +88,8 @@ async function init() {
 	// Delay the update based on cluster id
 	setTimeout(() => setInterval(updateServers, 6 * 60 * 1000, client), client.cluster.id * 7 * 1000);
 
-	// If first cluster, update the badge count online
-	if (process.env.NODE_ENV == 'production' && client.cluster.id == 0) {
-		setInterval(() => updateBadgeCount(client), 15 * 60 * 1000);
+	// Update shard status in delegate
+	if (process.env.NODE_ENV == 'production') {
+		setInterval(() => updateDelegate(client), 15 * 60 * 1000);
 	}
 }
