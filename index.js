@@ -41,7 +41,8 @@ async function reclusterShards() {
 				totalShards: recommendedShards,
 				shardsPerClusters: shardsPerClusters,
 				shardList: null,
-				shardClusterList: null
+				shardClusterList: null,
+                timeout: -1
 			});
 		}
 	} catch (error) {
