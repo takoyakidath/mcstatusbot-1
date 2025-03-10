@@ -27,7 +27,7 @@ manager.on('clusterCreate', (cluster) => beaver.log('sharding', `Created cluster
 
 async function spawnShards() {
 	beaver.log('sharding', `Starting bot!`);
-	await manager.spawn({timeout: -1});
+	await manager.spawn({ timeout: -1 });
 	setInterval(reclusterShards, 24 * 60 * 60 * 1000);
 }
 

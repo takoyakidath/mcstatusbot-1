@@ -114,8 +114,8 @@ export async function execute(interaction) {
 
 	// Create the channels and add to category
 	let voiceChannels = [
-		{ idType: 'statusId', name: 'Status: Updating...' },
-		{ idType: 'playersId', name: 'Players: Updating...' }
+		{ idType: 'statusId', name: '🔗: ⏳' },
+		{ idType: 'playersId', name: '👤: ⏳' }
 	];
 	for (const voiceChannel of voiceChannels) {
 		try {

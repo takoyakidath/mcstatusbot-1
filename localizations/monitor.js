@@ -1,55 +1,85 @@
 // Must be lowercase and not contain any spaces
 export const nameLocalizations = {
-	de: 'überwachen'
+	da: 'overvåge',
+	de: 'überwachen',
+	'es-ES': 'monitor'
 };
 
 export const descriptionLocalizations = {
-	de: 'Erstellen Sie 2 Sprachkanäle, die den Status eines Minecraft-Servers anzeigen'
+	da: 'Opretter 2 talekanaler, der viser status for en Minecraft-server og valgfrit angiver et kaldenavn',
+	de: 'Erstellen Sie 2 Sprachkanäle, die den Status eines Minecraft-Servers anzeigen',
+	'es-ES': 'Crea 2 canales de voz que muestran el estado de un servidor y opcionalmente establece un apodo'
 };
 
 // Must be lowercase and not contain any spaces
 export const IPAddressLocalizations = {
-	de: 'ip'
+	da: 'ip',
+	de: 'ip',
+	'es-ES': 'ip'
 };
 
 export const IPAddressDescriptionLocalizations = {
-	de: 'IP-Adresse'
+	da: 'IP-adresse',
+	de: 'IP-adresse',
+	'es-ES': 'Dirección IP'
 };
 
 // Must be lowercase and not contain any spaces
 export const nicknameLocalizations = {
-	de: 'spitzname'
+	da: 'kaldenavn',
+	de: 'spitzname',
+	'es-ES': 'apodo'
 };
 
 export const nicknameDescriptionLocalizations = {
-	de: 'Server-Spitzname'
+	da: 'Kaldenavn',
+	de: 'Server-Spitzname',
+	'es-ES': 'Apodo del servidor'
 };
 
 // Must be lowercase and not contain any spaces
 export const defaultLocalizations = {
-	de: 'standard'
+	da: 'standard',
+	de: 'standard',
+	'es-ES': 'predeterminado'
 };
 
 export const defaultDescriptionLocalizations = {
-	de: 'Legen Sie diesen Server als Standard für alle Befehle fest'
+	da: 'Angiv denne server som standardserver',
+	de: 'Legen Sie diesen Server als Standard für alle Befehle fest',
+	'es-ES': 'Establecer este servidor como predeterminado'
 };
 
 // Must be lowercase and not contain any spaces
 export const platformLocalizations = {
-	de: 'plattform'
+	da: 'platform',
+	de: 'plattform',
+	'es-ES': 'plataforma'
 };
 
 export const platformDescriptionLocalizations = {
-	de: 'Serverplattform'
+	da: 'Serverplatform',
+	de: 'Serverplattform',
+	'es-ES': 'Plataforma del servidor'
 };
 
 export const errorMessageLocalizations = {
-	de: 'Beim Erstellen der Kanäle ist ein Fehler aufgetreten. Bitte löschen Sie alle erstellten Kanäle manuell!'
+	da: 'Der opstod en fejl under oprettelsen af kanalerne. Slet venligst alle oprettede kanaler manuelt!',
+	de: 'Beim Erstellen der Kanäle ist ein Fehler aufgetreten. Bitte löschen Sie alle erstellten Kanäle manuell!',
+	'es-ES': '¡Se produjo un error al crear los canales! ¡Elimina todos los canales creados manualmente!'
 };
 
 export const successMessageLocalizations = {
+	da: {
+		notDefault: 'Serveren blev med succes overvåget!',
+		default: 'Serveren blev med succes overvåget og angivet som standardserver!'
+	},
 	de: {
 		notDefault: 'Server erfolgreich überwacht!',
 		default: 'Server erfolgreich überwacht und als Standardserver festgelegt!'
+	},
+	'es-ES': {
+		notDefault: '¡Servidor monitorizado con éxito!',
+		default: '¡Servidor monitorizado con éxito y establecido como servidor predeterminado!'
 	}
 };
