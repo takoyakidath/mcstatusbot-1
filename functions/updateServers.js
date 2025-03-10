@@ -27,7 +27,7 @@ export async function updateServers(client) {
 					let serverStatus;
 
 					try {
-						serverStatus = await getServerStatus(server);
+						serverStatus = await getServerStatus(server, 'low_priority');
 					} catch (error) {
 						handleUpdateError(error, server.ip, guild.id);
 					}

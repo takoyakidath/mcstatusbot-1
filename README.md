@@ -16,13 +16,13 @@ our server running!
 
 **Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
-## Feb 2025 Update
+## Mar 2025 - Technical Update
 
--   Making find server internally faster
--   Package updates on bot and backend
--   New Languages: 🇩🇰 🇪🇸
--   Brand new backend proxy (removing old packages no longer maintained)
--   Language neutral online and offline indicators (custom indicators coming in next update)
+-   Updates to bot configuration
+-   Package updates on server
+-   Router configuration update for improved security
+-   Add secondary ping server to improve network load handling
+-   Code update to align with RFC1918 standards (Private IPs can no longer be monitored. Your bot must be publicly accessible in order for the bot to reach it)
 
 ## Features
 
