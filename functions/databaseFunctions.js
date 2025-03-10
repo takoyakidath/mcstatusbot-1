@@ -9,7 +9,9 @@ const server = mongoose.Schema({
 	playersId: { type: String, required: true },
 	nickname: { type: String, required: false, default: null },
 	default: { type: Boolean, required: false, default: false },
-	platform: { type: String, required: false, default: 'java' }
+	platform: { type: String, required: false, default: 'java' },
+    onlineIndicator: { type: String, required: false, default: 'Online' },
+    offlineIndicator: { type: String, required: false, default: 'Offline' }
 });
 
 const guild = mongoose.Schema({

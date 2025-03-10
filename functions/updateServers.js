@@ -25,11 +25,16 @@ export async function updateServers(client) {
 			await Promise.allSettled(
 				serverList.map(async (server) => {
 					let serverStatus;
+                    let serverError;
 
 					try {
 						serverStatus = await getServerStatus(server, 'low_priority');
 					} catch (error) {
-						handleUpdateError(error, server.ip, guild.id);
+                        if (error.message == 'Invalid server IP') {
+                            serverError = 'Invalid IP Address';
+                        } else {
+                            handleUpdateError(error, server.ip, guild.id);
+                        }
 					}
 
 					const channels = [
@@ -37,7 +42,7 @@ export async function updateServers(client) {
 						{ object: await guild.channels.cache.get(server.playersId), type: 'players' }
 					];
 
-					await renameChannels(channels, serverStatus, 'low_priority');
+					await renameChannels(channels, serverStatus, 'low_priority', serverError);
 				})
 			);
 		})
