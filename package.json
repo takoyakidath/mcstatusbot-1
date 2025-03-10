@@ -1,6 +1,6 @@
 {
 	"name": "mcstatus-discordbot",
-	"version": "2024.06.07",
+	"version": "2025.03.09",
 	"description": "A simple Discord.js bot that pings Minecraft servers using the \"mcping-js\" node module.",
 	"engines": {
 		"node": "20.x"
@@ -14,6 +14,7 @@
 	"main": "index.js",
 	"dependencies": {
 		"beaver-logs": "^0.1.0",
+		"bogon": "^1.1.0",
 		"bufferutil": "^4.0.8",
 		"discord-hybrid-sharding": "^2.1.3",
 		"discord.js": "^14.7.1",

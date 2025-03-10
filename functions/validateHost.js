@@ -1,6 +1,7 @@
 'use strict';
 import unidecode from 'unidecode';
 import validator from 'validator';
+import bogon from 'bogon';
 const { isIP, isFQDN, isEmpty, isPort } = validator;
 
 export function validateHost(host) {
@@ -15,11 +16,13 @@ export function validateHost(host) {
 
 function validateAddress(ip) {
 	const decoded = unidecode(ip);
-	return (
-		isIP(decoded) ||
-		isFQDN(decoded, {
-			allow_underscores: false,
-			allow_numeric_tld: true
-		})
-	);
+
+    if (isIP(decoded)) {
+        return isIP(decoded) && !bogon(ip);
+    }
+
+    return isFQDN(decoded, {
+        allow_underscores: false,
+        allow_numeric_tld: true
+    });
 }
