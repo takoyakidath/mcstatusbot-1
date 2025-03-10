@@ -4,11 +4,15 @@ import { statusBedrock, statusJava } from 'node-mcstatus';
 import unidecode from 'unidecode';
 import { validateHost } from './validateHost.js';
 
-const options = {
+const options_high = {
 	baseURL: process.env.NODE_ENV == 'production' ? 'http://127.0.0.1:3001' : 'https://api.mcstatus.io/v2'
 };
 
-export async function getServerStatus(server) {
+const options_low = {
+	baseURL: process.env.NODE_ENV == 'production' ? 'http://127.0.0.1:3002' : 'https://api.mcstatus.io/v2'
+};
+
+export async function getServerStatus(server, priority = "high_priority") {
 	if (!validateHost(server.ip)) {
 		throw new Error('Invalid server IP');
 	}
@@ -18,6 +22,7 @@ export async function getServerStatus(server) {
 	port = parseInt(port) || undefined;
 
 	let startTime = Date.now();
+    let options = priority == 'high_priority' ? options_high : options_low;
 	let response = server.platform == 'bedrock' ? await statusBedrock(ip, port, options) : await statusJava(ip, port, options);
 	let latency = Date.now() - startTime + ' ms';
 

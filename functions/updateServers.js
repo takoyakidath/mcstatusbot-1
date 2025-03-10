@@ -33,7 +33,7 @@ export async function updateServers(client) {
 				serverList.map(async (server) => {
 					let serverStatus;
 					try {
-						serverStatus = await getServerStatus(server);
+						serverStatus = await getServerStatus(server, 'low_priority');
 					} catch (error) {
 						if (!server.ip.includes('_')) {
 							beaver.log(
