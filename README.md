@@ -16,12 +16,13 @@ our server running!
 
 **Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
-## May/June 2024 Update
+## Mar 2025 - Technical Update
 
--   Various bugfixes after bot migration to new cloud server
--   Package updates on bot
--   Multi-language support! (German for now but more languages to follow)
--   Added contribution guide for languages
+-   Updates to bot configuration
+-   Package updates on server
+-   Router configuration update for improved security
+-   Add secondary ping server to improve network load handling
+-   Code update to align with RFC1918 standards (Private IPs can no longer be monitored. Your bot must be publicly accessible in order for the bot to reach it)
 
 ## Features
 
