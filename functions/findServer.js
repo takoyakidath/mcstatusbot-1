@@ -3,30 +3,22 @@ import { getServers } from './databaseFunctions.js';
 
 export async function findServer(query, fields, guildId) {
 	const monitoredServers = await getServers(guildId);
-	let serverIndex = -1;
-	let matchingServer;
+	let match;
 
 	for (const field of fields) {
-		serverIndex = monitoredServers.findIndex((server) => {
-			return server[field]?.toLowerCase() == query?.toLowerCase();
-		});
-		if (serverIndex != -1) {
-			matchingServer = monitoredServers[serverIndex];
-			break;
-		}
+		match = monitoredServers.find((server) => server[field]?.toLowerCase() == query?.toLowerCase());
+		if (match) break;
 	}
-	return matchingServer;
+
+	return match;
 }
 
 export async function findDefaultServer(guildId) {
 	const monitoredServers = await getServers(guildId);
-	const serverIndex = monitoredServers.findIndex((server) => server.default);
-	const server = serverIndex != -1 ? monitoredServers[serverIndex] : monitoredServers[0];
-	return server;
+	return monitoredServers.find((server) => server.default) || monitoredServers[0];
 }
 
 export async function findServerIndex(query, guildId) {
 	const monitoredServers = await getServers(guildId);
-	const serverIndex = monitoredServers.findIndex((server) => server.ip == query.ip);
-	return serverIndex;
+	return monitoredServers.findIndex((server) => server.ip == query.ip);
 }

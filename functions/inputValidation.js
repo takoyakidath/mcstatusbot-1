@@ -50,6 +50,7 @@ export async function isDefault(server, guildId, interaction) {
 
 export async function isMonitored(ip, guildId, interaction) {
 	let server = await findServer(ip, ['ip'], guildId);
+
 	if (server) {
 		interaction && (await sendMessage(interaction, alreadyMonitoredLocalizations[interaction.locale] ?? 'This IP address is already being monitored!'));
 		return true;

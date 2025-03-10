@@ -31,7 +31,7 @@ our server running!
 -   Support for monitoring multiple Minecraft servers at once
 -   Check the status of non-monitored servers
 -   Slash command support with ephemeral responses to prevent channels from being cluttered with commands
--   Multiple languages: 🇬🇧 🇩🇪
+-   Multiple languages: 🇬🇧 🇩🇪 🇩🇰 🇪🇸
 
 <br>
 <table style='border: none'>
@@ -76,4 +76,5 @@ our server running!
 -   [ ] Add option to monitor server with message embed instead of voice channels
 -   [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
 -   [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
--   [x] Add localization support
+-   [x] Custom online / offline indicators
+-   [ ] Server offline notifications in channel

@@ -13,6 +13,7 @@ export async function isMissingPermissions(type, object, interaction) {
 	if (!object) return false;
 
 	const missingPermissions = getMissingPermissions(type, object);
+
 	if (missingPermissions) {
 		if (interaction) {
 			const localizedError = needsPermissionsLocalizations[interaction.locale];
