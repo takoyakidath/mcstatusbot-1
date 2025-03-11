@@ -1,6 +1,5 @@
 [![Invite to Server](https://img.shields.io/static/v1?label=&message=Invite%20to%20Server&color=forestgreen)](https://discord.com/api/oauth2/authorize?client_id=788083161296273517&permissions=269485072&scope=bot%20applications.commands)
 ![Discord Server Count](https://img.shields.io/endpoint?url=https%3A%2F%2Fmcstatusbot-delegate-production.up.railway.app%2Fcount%2FgetFormatted)
-[![Make A Donation](https://img.shields.io/static/v1?label=&message=Donate&color=d9b811&logo=buymeacoffee&logoColor=white)](https://www.buymeacoffee.com/rahulrao)
 [![Visit our website](https://img.shields.io/static/v1?label=&message=Website&color=purple)](https://mcstatusbot.com/)
 
 # Minecraft Server Status - Discord Bot
@@ -10,9 +9,6 @@ A simple [Discord.js](https://www.npmjs.com/package/discord.js) bot that display
 
 **To use:** Simply [invite](https://discord.com/api/oauth2/authorize?client_id=788083161296273517&permissions=269485072&scope=bot%20applications.commands) the
 bot to your server.
-
-**Enjoying our bot?** Our bot is completely free to use, and will always remain so. A [donation](https://www.buymeacoffee.com/rahulrao) of any amount helps keep
-our server running!
 
 **Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
@@ -30,7 +26,7 @@ our server running!
 
 **Aternos/other hosting users:** Underscores are not allowed in Domain names! Please change your server address to remove underscores.
 
-**Local IP Addresses** The bot will now filter out local IP addresses (192.168, 127.0.0, 10.0 etc). The bot will now show `Status: Error` if your server's IP address has been filtered. If you believe the IP address is valid but the bot shows an error, please open an issue here on Github.
+**Local IP Addresses** The bot will now filter out local IP addresses (192.168, 127.0.0, 10.0 etc). The bot will now show `Status: Error` if your server's IP address has been filtered. We recommend you use an ingress adaptor like [Minekube](https://connect.minekube.com/) to make your server securely accessible via a domain, and then monitor that domain.
 
 ## Features
 
