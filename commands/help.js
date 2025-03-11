@@ -1,5 +1,5 @@
 'use strict';
-import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
 import { embedColor } from '../functions/sendMessage.js';
 import { commandTitleLocalizations, descriptionLocalizations, listLocalizations, nameLocalizations } from '../localizations/help.js';
 
@@ -46,5 +46,6 @@ export async function execute(interaction) {
 		.setTitle(commandTitleLocalizations[interaction.locale] ?? 'Commands:')
 		.setColor(embedColor)
 		.addFields(...getFieldLocalizations(interaction.locale));
-	await interaction.editReply({ embeds: [helpEmbed], ephemeral: true });
+
+	await interaction.editReply({ embeds: [helpEmbed], flags: MessageFlags.Ephemeral });
 }

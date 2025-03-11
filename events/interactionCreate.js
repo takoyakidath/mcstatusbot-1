@@ -1,5 +1,5 @@
 'use strict';
-import { Collection, Events } from 'discord.js';
+import { Collection, Events, MessageFlags } from 'discord.js';
 import { beaver } from '../functions/consoleLogging.js';
 import { cooldownErrorLocalizations, errorMessageLocalizations } from '../localizations/interactionCreate.js';
 
@@ -15,7 +15,7 @@ export async function execute(interaction) {
 
 	// Defer the reply to the interaction
 	try {
-		await interaction.deferReply({ ephemeral: true });
+		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
 		if (!interaction.deferred) throw new Error('Interaction was not deferred');
 	} catch (error) {
 		const commandOptions = getCommandOptions(interaction);
@@ -56,12 +56,12 @@ export async function execute(interaction) {
 			if (localizedError) {
 				await interaction.editReply({
 					content: `${localizedError[1]} ${expiredTimestamp} ${localizedError[2]}`,
-					ephemeral: true
+					flags: MessageFlags.Ephemeral
 				});
 			} else {
 				await interaction.editReply({
 					content: `Please wait. You are on a cooldown for ${expiredTimestamp} seconds.`,
-					ephemeral: true
+					flags: MessageFlags.Ephemeral
 				});
 			}
 
@@ -93,7 +93,7 @@ export async function execute(interaction) {
 			content:
 				errorMessageLocalizations[interaction.locale] ??
 				'There was an error while executing this command! Please try again in a few minutes. If the problem persists, please open an issue on GitHub.',
-			ephemeral: true
+			flags: MessageFlags.Ephemeral
 		});
 	}
 }

@@ -24,6 +24,14 @@ our server running!
 - Add secondary ping server to improve network load handling
 - Code update to align with RFC1918 standards (Private IPs can no longer be monitored. Your bot must be publicly accessible in order for the bot to reach it)
 
+### Usage notes:
+
+**Bedrock servers:** to use the `/status` and `/monitor` commands, you must set the `type` option to "Bedrock" for the bot to function correctly.
+
+**Aternos/other hosting users:** Underscores are not allowed in Domain names! Please change your server address to remove underscores.
+
+**Local IP Addresses** The bot will now filter out local IP addresses (192.168, 127.0.0, 10.0 etc). The bot will now show `Status: Error` if your server's IP address has been filtered. If you believe the IP address is valid but the bot shows an error, please open an issue here on Github.
+
 ## Features
 
 - Auto-updating voice channels to display the server's status and the number of players online
@@ -61,18 +69,14 @@ our server running!
 
 `/help` List the other commands
 
-### Usage notes:
-
-**Bedrock servers:** to use the `/status` and `/monitor` commands, you must set the `type` option to "Bedrock" for the bot to function correctly.
-
-**Aternos/other hosting users:** Underscores are not allowed in Domain names! Please change your server address to remove underscores.
-
 ## Roadmap
 
 ### Feature Updates
 
 - [x] Rework status, nickname, and unmonitor commands to include dropdown menus
 - [ ] Rework monitor and nickname commands to include modal workflow
+- [ ] Allow disabling of ephemeral messages
+- [ ] Minecraft plugin to allow monitoring of local servers
 - [ ] Add option to monitor server with message embed instead of voice channels
 - [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
 - [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)

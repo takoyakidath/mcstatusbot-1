@@ -1,5 +1,5 @@
 'use strict';
-import { AttachmentBuilder, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { AttachmentBuilder, EmbedBuilder, MessageFlags, SlashCommandBuilder } from 'discord.js';
 import { beaver } from '../functions/consoleLogging.js';
 import { findDefaultServer, findServer } from '../functions/findServer.js';
 import { getServerStatus } from '../functions/getServerStatus.js';
@@ -128,5 +128,5 @@ export async function execute(interaction) {
 		responseEmbed.setThumbnail('attachment://icon.jpg');
 	}
 
-	await interaction.editReply({ embeds: [responseEmbed], files, ephemeral: true });
+	await interaction.editReply({ embeds: [responseEmbed], files, flags: MessageFlags.Ephemeral });
 }

@@ -48,6 +48,8 @@ export async function updateServers(client) {
 							}
 						}
 
+						if (!serverStatus && !serverError) return;
+
 						const channels = [
 							{ object: await guild.channels.cache.get(server.statusId), type: 'status' },
 							{ object: await guild.channels.cache.get(server.playersId), type: 'players' }
