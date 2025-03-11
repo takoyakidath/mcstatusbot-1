@@ -16,6 +16,7 @@ const server = mongoose.Schema({
 
 const guild = mongoose.Schema({
 	guildId: { type: String, required: true },
+	ephemeral: { type: Boolean, required: false, default: true },
 	servers: [server]
 });
 
@@ -31,6 +32,30 @@ function createGuild(key, servers) {
 		servers: servers
 	});
 	guild.save();
+}
+
+export async function getEphemeral(key) {
+	return Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				return guild.ephemeral;
+			}
+			return true;
+		})
+		.catch(databaseError);
+}
+
+export async function setEphemeral(key, ephemeral) {
+	Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				guild.ephemeral = ephemeral;
+				guild.save();
+			}
+		})
+		.catch(databaseError);
 }
 
 export async function getServers(key) {
@@ -59,32 +84,6 @@ export async function addServer(key, server) {
 		.catch(databaseError);
 }
 
-export async function deleteServer(key, server) {
-	Guild.findOne({ guildId: key })
-		.exec()
-		.then((guild) => {
-			if (guild) {
-				guild.servers = guild.servers.filter((s) => s.ip != server.ip);
-				guild.save();
-			}
-		})
-		.catch(databaseError);
-}
-
-export async function deleteServers(key, servers) {
-	const serverIPs = servers.map((s) => s.ip);
-
-	Guild.findOne({ guildId: key })
-		.exec()
-		.then((guild) => {
-			if (guild) {
-				guild.servers = guild.servers.filter((s) => !serverIPs.includes(s.ip));
-				guild.save();
-			}
-		})
-		.catch(databaseError);
-}
-
 export async function setServers(key, servers) {
 	Guild.findOne({ guildId: key })
 		.exec()
@@ -107,6 +106,32 @@ export async function numberOfServers(key) {
 				return guild.servers.length;
 			}
 			return 0;
+		})
+		.catch(databaseError);
+}
+
+export async function deleteServer(key, server) {
+	Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				guild.servers = guild.servers.filter((s) => s.ip != server.ip);
+				guild.save();
+			}
+		})
+		.catch(databaseError);
+}
+
+export async function deleteServers(key, servers) {
+	const serverIPs = servers.map((s) => s.ip);
+
+	Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				guild.servers = guild.servers.filter((s) => !serverIPs.includes(s.ip));
+				guild.save();
+			}
 		})
 		.catch(databaseError);
 }

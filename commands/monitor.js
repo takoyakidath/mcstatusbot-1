@@ -1,5 +1,5 @@
 'use strict';
-import { ChannelType, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
+import { ChannelType, InteractionContextType, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
 import { isMissingPermissions } from '../functions/botPermissions.js';
 import { beaver } from '../functions/consoleLogging.js';
 import { addServer, getServers, setServers } from '../functions/databaseFunctions.js';
@@ -56,7 +56,7 @@ export const data = new SlashCommandBuilder()
 		.setChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' })
 	)
 	.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-	.setDMPermission(false);
+    .setContexts([InteractionContextType.Guild]);
 
 export async function execute(interaction) {
 	if (await isMissingPermissions('server', interaction.guild, interaction)) return;

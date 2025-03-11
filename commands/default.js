@@ -1,5 +1,5 @@
 'use strict';
-import { PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
+import { InteractionContextType, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
 import { getServers, setServers } from '../functions/databaseFunctions.js';
 import { findDefaultServer, findServer, findServerIndex } from '../functions/findServer.js';
 import { isDefault, isNotMonitored, noMonitoredServers } from '../functions/inputValidation.js';
@@ -24,7 +24,7 @@ export const data = new SlashCommandBuilder()
         .setDescriptionLocalizations(serverOptionLocalizations)
 		.setRequired(false))
 	.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-	.setDMPermission(false);
+    .setContexts([InteractionContextType.Guild]);
 
 export async function execute(interaction) {
 	if (await noMonitoredServers(interaction.guildId, interaction)) return;

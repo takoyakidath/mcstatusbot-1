@@ -1,7 +1,8 @@
 'use strict';
-import { Collection, Events, MessageFlags } from 'discord.js';
+import { Collection, Events, InteractionContextType, MessageFlags } from 'discord.js';
 import { beaver } from '../functions/consoleLogging.js';
 import { cooldownErrorLocalizations, errorMessageLocalizations } from '../localizations/interactionCreate.js';
+import { getEphemeral } from '../functions/databaseFunctions.js';
 
 export const name = Events.InteractionCreate;
 export const once = false;
@@ -13,9 +14,16 @@ export async function execute(interaction) {
 
 	if (!command) return;
 
+	// If the command was executed from a guild, check if the guild has ephemeral responses enabled
+	// All DM messages are ephemeral by default
+	let ephemeral = true;
+	if (interaction.context == InteractionContextType.Guild) {
+		ephemeral = await getEphemeral(interaction.guildId);
+	}
+
 	// Defer the reply to the interaction
 	try {
-		await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+		ephemeral ? await interaction.deferReply({ flags: MessageFlags.Ephemeral }) : await interaction.deferReply();
 		if (!interaction.deferred) throw new Error('Interaction was not deferred');
 	} catch (error) {
 		const commandOptions = getCommandOptions(interaction);
@@ -43,26 +51,24 @@ export async function execute(interaction) {
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.data.name);
-	const cooldownAmount = 3 * 1000; // 3 seconds cooldown
+	const cooldownAmount = 3; // 3 seconds cooldown
 
 	if (timestamps.has(interaction.user.id)) {
-		const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount;
+		const expirationTime = timestamps.get(interaction.user.id) + cooldownAmount * 1000;
 
 		if (now < expirationTime) {
-			const expiredTimestamp = Math.round(expirationTime / 1000);
-
 			const localizedError = cooldownErrorLocalizations[interaction.locale];
 
 			if (localizedError) {
-				await interaction.editReply({
-					content: `${localizedError[1]} ${expiredTimestamp} ${localizedError[2]}`,
-					flags: MessageFlags.Ephemeral
-				});
+				const reply = { content: `${localizedError[1]} ${cooldownAmount} ${localizedError[2]}` };
+				if (ephemeral) reply.flags = MessageFlags.Ephemeral;
+
+				await interaction.editReply(reply);
 			} else {
-				await interaction.editReply({
-					content: `Please wait. You are on a cooldown for ${expiredTimestamp} seconds.`,
-					flags: MessageFlags.Ephemeral
-				});
+				const reply = { content: `Please wait. You are on cooldown for ${cooldownAmount} seconds.` };
+				if (ephemeral) reply.flags = MessageFlags.Ephemeral;
+
+				await interaction.editReply(reply);
 			}
 
 			return;
@@ -70,7 +76,7 @@ export async function execute(interaction) {
 	}
 
 	timestamps.set(interaction.user.id, now);
-	setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
+	setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount * 1000);
 
 	// Now execute the command
 	try {
@@ -89,12 +95,14 @@ export async function execute(interaction) {
 			error
 		);
 
-		await interaction.editReply({
+		const reply = {
 			content:
 				errorMessageLocalizations[interaction.locale] ??
-				'There was an error while executing this command! Please try again in a few minutes. If the problem persists, please open an issue on GitHub.',
-			flags: MessageFlags.Ephemeral
-		});
+				'There was an error while executing this command! Please try again in a few minutes. If the problem persists, please open an issue on GitHub.'
+		};
+		if (ephemeral) reply.flags = MessageFlags.Ephemeral;
+
+		await interaction.editReply(reply);
 	}
 }
 
