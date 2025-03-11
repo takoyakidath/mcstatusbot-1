@@ -35,20 +35,20 @@ To add new localizations:
 
 ### Notices:
 
--   Only add / modify one language at a time. PRs that modify more than one language will be rejected.
+- Only add / modify one language at a time. PRs that modify more than one language will be rejected.
 
--   Do not edit any other files / code in a language PR. Open a separate PR for code modifications. Any language PRs that modify code will be rejected.
+- Do not edit any other files / code in a language PR. Open a separate PR for code modifications. Any language PRs that modify code will be rejected.
 
--   Do not add or delete any files. Any PR that violates this rule will be rejected.
+- Do not add or delete any files. Any PR that violates this rule will be rejected.
 
--   Do not include profane language in a translation. We will check. First offense will lead to rejection of PR with warning. Any further offense will result in a ban.
+- Do not include profane language in a translation. We will check. First offense will lead to rejection of PR with warning. Any further offense will result in a ban.
 
--   Multiple PRs for the same language will be treated in the order they were received. Should the merge of a prior PR for your language cause a conflict with your PR, we will notify you with a comment and allow you to correct your translations.
+- Multiple PRs for the same language will be treated in the order they were received. Should the merge of a prior PR for your language cause a conflict with your PR, we will notify you with a comment and allow you to correct your translations.
 
--   Should there be minor errors in the PR, we will add a comment and allow you to correct the PR.
+- Should there be minor errors in the PR, we will add a comment and allow you to correct the PR.
 
--   Any egregious violations of the guidelines will result in a PR rejection. If your PR is rejected, your branch will be deleted too.
+- Any egregious violations of the guidelines will result in a PR rejection. If your PR is rejected, your branch will be deleted too.
 
--   Once merged, the bot will incorporate the changes into the subsequent monthly update. Depending on when your changes are accepted, they might take a few weeks to show up.
+- Once merged, the bot will incorporate the changes into the subsequent monthly update. Depending on when your changes are accepted, they might take a few weeks to show up.
 
 Thank you for your contribution! When your PR is merged, you will automatically be listed as a contributor! If you have any questions, please open a github issue.

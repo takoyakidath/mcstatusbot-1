@@ -10,8 +10,8 @@ const server = mongoose.Schema({
 	nickname: { type: String, required: false, default: null },
 	default: { type: Boolean, required: false, default: false },
 	platform: { type: String, required: false, default: 'java' },
-    onlineIndicator: { type: String, required: false, default: 'Online' },
-    offlineIndicator: { type: String, required: false, default: 'Offline' }
+	onlineIndicator: { type: String, required: false, default: 'Online' },
+	offlineIndicator: { type: String, required: false, default: 'Offline' }
 });
 
 const guild = mongoose.Schema({

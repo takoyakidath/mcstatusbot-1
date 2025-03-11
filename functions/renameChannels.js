@@ -16,19 +16,19 @@ function errorHandler(error, message) {
 }
 
 export async function renameChannels(channels, serverStatus, priority = 'high_priority', serverError = null) {
-    let channelNames;
-    
-    if (serverError) {
-        channelNames = {
-            status: 'Status: Error',
-            players: `${serverError}`
-        }
-    } else {
-        channelNames = {
-            status: serverStatus.online ? 'Status: Online' : 'Status: Offline',
-            players: serverStatus.players ? `Players: ${serverStatus.players.online} / ${serverStatus.players.max}` : 'Players: 0'
-        };
-    }
+	let channelNames;
+
+	if (serverError) {
+		channelNames = {
+			status: 'Status: Error',
+			players: `${serverError}`
+		};
+	} else {
+		channelNames = {
+			status: serverStatus.online ? 'Status: Online' : 'Status: Offline',
+			players: serverStatus.players ? `Players: ${serverStatus.players.online} / ${serverStatus.players.max}` : 'Players: 0'
+		};
+	}
 
 	await Promise.allSettled(
 		channels.map(async (channel) => {

@@ -18,20 +18,20 @@ our server running!
 
 ## Mar 2025 - Technical Update
 
--   Updates to bot configuration
--   Package updates on server
--   Router configuration update for improved security
--   Add secondary ping server to improve network load handling
--   Code update to align with RFC1918 standards (Private IPs can no longer be monitored. Your bot must be publicly accessible in order for the bot to reach it)
+- Updates to bot configuration
+- Package updates on server
+- Router configuration update for improved security
+- Add secondary ping server to improve network load handling
+- Code update to align with RFC1918 standards (Private IPs can no longer be monitored. Your bot must be publicly accessible in order for the bot to reach it)
 
 ## Features
 
--   Auto-updating voice channels to display the server's status and the number of players online
--   Support for both Java and Bedrock servers
--   Support for monitoring multiple Minecraft servers at once
--   Check the status of non-monitored servers
--   Slash command support with ephemeral responses to prevent channels from being cluttered with commands
--   Multiple languages: 🇬🇧 🇩🇪 🇩🇰 🇪🇸
+- Auto-updating voice channels to display the server's status and the number of players online
+- Support for both Java and Bedrock servers
+- Support for monitoring multiple Minecraft servers at once
+- Check the status of non-monitored servers
+- Slash command support with ephemeral responses to prevent channels from being cluttered with commands
+- Multiple languages: 🇬🇧 🇩🇪 🇩🇰 🇪🇸
 
 <br>
 <table style='border: none'>
@@ -71,10 +71,10 @@ our server running!
 
 ### Feature Updates
 
--   [ ] Rework status, nickname, and unmonitor commands to include dropdown menus
--   [ ] Rework monitor and nickname commands to include modal workflow
--   [ ] Add option to monitor server with message embed instead of voice channels
--   [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
--   [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
--   [x] Custom online / offline indicators
--   [ ] Server offline notifications in channel
+- [x] Rework status, nickname, and unmonitor commands to include dropdown menus
+- [ ] Rework monitor and nickname commands to include modal workflow
+- [ ] Add option to monitor server with message embed instead of voice channels
+- [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
+- [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
+- [ ] Custom online / offline indicators
+- [ ] Server offline notifications in channel

@@ -17,12 +17,12 @@ export function validateHost(host) {
 function validateAddress(ip) {
 	const decoded = unidecode(ip);
 
-    if (isIP(decoded)) {
-        return isIP(decoded) && !bogon(ip);
-    }
+	if (isIP(decoded)) {
+		return !bogon(decoded);
+	}
 
-    return isFQDN(decoded, {
-        allow_underscores: false,
-        allow_numeric_tld: true
-    });
+	return isFQDN(decoded, {
+		allow_underscores: false,
+		allow_numeric_tld: true
+	});
 }
