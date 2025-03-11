@@ -1,7 +1,7 @@
 'use strict';
 import 'dotenv/config';
 import { beaver } from './consoleLogging.js';
-import { getServers } from './databaseFunctions.js';
+import { getIndicators, getServers } from './databaseFunctions.js';
 import { getServerStatus } from './getServerStatus.js';
 import { renameChannels } from './renameChannels.js';
 
@@ -55,7 +55,9 @@ export async function updateServers(client) {
 							{ object: await guild.channels.cache.get(server.playersId), type: 'players' }
 						];
 
-						await renameChannels(channels, serverStatus, 'low_priority', serverError);
+						const indicators = await getIndicators(guild.id, server);
+
+						await renameChannels(channels, serverStatus, indicators, 'low_priority', serverError);
 					},
 					10
 				)

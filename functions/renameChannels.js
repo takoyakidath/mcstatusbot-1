@@ -15,7 +15,7 @@ function errorHandler(error, message) {
 	}
 }
 
-export async function renameChannels(channels, serverStatus, priority = 'high_priority', serverError = null) {
+export async function renameChannels(channels, serverStatus, indicators, priority = 'high_priority', serverError = null) {
 	let channelNames;
 
 	if (serverError) {
@@ -25,7 +25,7 @@ export async function renameChannels(channels, serverStatus, priority = 'high_pr
 		};
 	} else {
 		channelNames = {
-			status: serverStatus.online ? 'Status: Online' : 'Status: Offline',
+			status: serverStatus.online ? `Status: ${indicators.onlineIndicator}` : `Status: ${indicators.offlineIndicator}`,
 			players: serverStatus.players ? `Players: ${serverStatus.players.online} / ${serverStatus.players.max}` : 'Players: 0'
 		};
 	}

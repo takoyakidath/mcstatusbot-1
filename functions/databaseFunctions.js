@@ -26,6 +26,7 @@ function databaseError(error) {
 	beaver.log('database', 'Database error!', error);
 }
 
+// Guild level functions
 function createGuild(key, servers) {
 	const guild = new Guild({
 		guildId: key,
@@ -138,4 +139,50 @@ export async function deleteServers(key, servers) {
 
 export async function deleteGuild(key) {
 	Guild.findOneAndDelete({ guildId: key }).exec().catch(databaseError);
+}
+
+// Server level functions
+export async function getIndicators(key, server) {
+	return Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				const srv = guild.servers.find((s) => s.ip == server.ip);
+				if (srv) {
+					return { onlineIndicator: srv.onlineIndicator, offlineIndicator: srv.offlineIndicator };
+				}
+			}
+			return { onlineIndicator: 'Online', offlineIndicator: 'Offline' };
+		})
+		.catch(databaseError);
+}
+
+export async function setOnlineIndicator(key, server, onlineIndicator) {
+	Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				const srv = guild.servers.find((s) => s.ip == server.ip);
+				if (srv) {
+					srv.onlineIndicator = onlineIndicator;
+					guild.save();
+				}
+			}
+		})
+		.catch(databaseError);
+}
+
+export async function setOfflineIndicator(key, server, offlineIndicator) {
+	Guild.findOne({ guildId: key })
+		.exec()
+		.then((guild) => {
+			if (guild) {
+				const srv = guild.servers.find((s) => s.ip == server.ip);
+				if (srv) {
+					srv.offlineIndicator = offlineIndicator;
+					guild.save();
+				}
+			}
+		})
+		.catch(databaseError);
 }

@@ -2,7 +2,7 @@
 import { ChannelType, InteractionContextType, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
 import { isMissingPermissions } from '../functions/botPermissions.js';
 import { beaver } from '../functions/consoleLogging.js';
-import { addServer, getServers, setServers } from '../functions/databaseFunctions.js';
+import { addServer, getIndicators, getServers, setServers } from '../functions/databaseFunctions.js';
 import { findDefaultServer, findServerIndex } from '../functions/findServer.js';
 import { getServerStatus } from '../functions/getServerStatus.js';
 import { isMonitored, isNicknameUsed, isValidServer, noMonitoredServers } from '../functions/inputValidation.js';
@@ -165,11 +165,14 @@ export async function execute(interaction) {
 			: (successMessageLocalizations[interaction.locale]?.notDefault ?? 'Server successfully monitored!')
 	);
 
+	// Get the online/offline indicators for the server
+	const indicators = await getIndicators(interaction.guildId);
+
 	// Get the server status and update the channels
 	const serverStatus = await getServerStatus(server);
 	const channels = [
 		{ object: await interaction.guild.channels.cache.get(server.statusId), type: 'status' },
 		{ object: await interaction.guild.channels.cache.get(server.playersId), type: 'players' }
 	];
-	await renameChannels(channels, serverStatus);
+	await renameChannels(channels, serverStatus, indicators);
 }
