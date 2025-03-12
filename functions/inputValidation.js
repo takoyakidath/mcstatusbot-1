@@ -11,7 +11,8 @@ import {
 	notMonitoredLocalizations,
 	removingDefaultServerLocalizations,
 	restrictedKeywordLocalizations,
-	restrictedKeywordNicknameLocalizations
+	restrictedKeywordNicknameLocalizations,
+	invalidIndicatorLocalizations
 } from '../localizations/inputValidation.js';
 import { numberOfServers } from './databaseFunctions.js';
 import { findDefaultServer, findServer } from './findServer.js';
@@ -152,6 +153,15 @@ export async function isValidServer(server, interaction) {
 				await sendMessage(interaction, `This is not a valid IP address or domain name ${server.includes('_') ? '(underscores are not allowed)!' : ''}`);
 			}
 		}
+		return false;
+	}
+
+	return true;
+}
+
+export async function isValidIndicator(indicator, interaction) {
+	if (indicator.length > 16) {
+		interaction && (await sendMessage(interaction, invalidIndicatorLocalizations[interaction.locale] ?? 'The indicator must be 16 characters or less!'));
 		return false;
 	}
 

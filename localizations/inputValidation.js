@@ -88,3 +88,9 @@ export const invalidServerLocalizations = {
 		2: '(los guiones bajos no están permitidos)!'
 	}
 };
+
+export const invalidIndicatorLocalizations = {
+	da: 'Indikatoren skal være 16 tegn eller mindre!',
+	de: 'Der Indikator muss 16 Zeichen oder weniger sein!',
+	'es-ES': '¡El indicador debe tener 16 caracteres o menos!'
+};
