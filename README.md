@@ -28,6 +28,8 @@ bot to your server.
 - Add secondary ping server to improve network load handling
 - Code update to align with RFC1918 standards (Private IPs can no longer be monitored. Your bot must be publicly accessible in order for the bot to reach it)
 
+As usual, please open an issue here if you notice any bugs/abnormal behaviour. Thank you!
+
 ### Usage notes:
 
 **Bedrock servers:** to use the `/status` and `/monitor` commands, you must set the `type` option to "Bedrock" for the bot to function correctly.
@@ -42,7 +44,7 @@ bot to your server.
 - Support for both Java and Bedrock servers
 - Support for monitoring multiple Minecraft servers at once
 - Check the status of non-monitored servers
-- Slash command support with ephemeral responses to prevent channels from being cluttered with commands
+- Slash command support with ephemeral responses (configurable) to prevent channels from being cluttered with commands
 - Multiple languages: 🇬🇧 🇩🇪 🇩🇰 🇪🇸
 
 <br>
