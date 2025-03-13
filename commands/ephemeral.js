@@ -30,10 +30,10 @@ export async function execute(interaction) {
 
 	await setEphemeral(interaction.guildId, ephemeral);
 
-	const locale = interaction.locale;
+	const localization = updatedLocalizations[interaction.locale];
 
-	if (locale) {
-		await sendMessage(interaction, `${updatedLocalizations[locale][1]} ${ephemeral ? updatedLocalizations[locale][2] : updatedLocalizations[locale][3]}`);
+	if (localization) {
+		await sendMessage(interaction, `${localization[1]} ${ephemeral ? localization[2] : localization[3]}`);
 		return;
 	}
 

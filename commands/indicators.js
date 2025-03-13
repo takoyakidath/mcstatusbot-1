@@ -4,22 +4,42 @@ import { getServers, setOfflineIndicator, setOnlineIndicator } from '../function
 import { sendMessage } from '../functions/sendMessage.js';
 import { isNotMonitored, isValidIndicator, noMonitoredServers } from '../functions/inputValidation.js';
 import { findDefaultServer, findServer } from '../functions/findServer.js';
+import {
+	allServerIndicatorsUpdatedLocalizations,
+	descriptionLocalizations,
+	nameLocalizations,
+	offlineOptionDescriptionLocalizations,
+	offlineOptionLocalizations,
+	onlineOptionDescriptionLocalizations,
+	onlineOptionLocalizations,
+	serverIndicatorsUpdatedLocalizations,
+	serverOptionDescriptionLocalizations,
+	serverOptionLocalizations
+} from '../localizations/indicators.js';
 
 // prettier-ignore
 export const data = new SlashCommandBuilder()
     .setName('indicators')
+    .setNameLocalizations(nameLocalizations)
     .setDescription('Customise the online/offline indicators for a particular server')
+    .setDescriptionLocalizations(descriptionLocalizations)
     .addStringOption((option) => option
             .setName('server')
+            .setNameLocalizations(serverOptionLocalizations)
             .setDescription('Server IP address or nickname')
+            .setDescriptionLocalizations(serverOptionDescriptionLocalizations)
             .setRequired(true))
     .addStringOption((option) => option
             .setName('online')
+            .setNameLocalizations(onlineOptionLocalizations)
             .setDescription('Online indicator')
+            .setDescriptionLocalizations(onlineOptionDescriptionLocalizations)
             .setRequired(false))
     .addStringOption((option) => option
             .setName('offline')
+            .setNameLocalizations(offlineOptionLocalizations)
             .setDescription('Offline indicator')
+            .setDescriptionLocalizations(offlineOptionDescriptionLocalizations)
             .setRequired(false))
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
     .setContexts([InteractionContextType.Guild]);
@@ -53,10 +73,16 @@ export async function execute(interaction) {
 			})
 		);
 
-		await sendMessage(
-			interaction,
-			'The online/offline indicators have been updated for all servers. The changes will be reflected with the next update, in about 5-6 minutes.'
-		);
+		const localization = allServerIndicatorsUpdatedLocalizations[interaction.locale];
+
+		if (localization) {
+			await sendMessage(interaction, localization);
+		} else {
+			await sendMessage(
+				interaction,
+				'The online/offline indicators have been updated for all servers. The changes will be reflected with the next update, in about 5-6 minutes.'
+			);
+		}
 
 		return;
 	}
@@ -79,8 +105,14 @@ export async function execute(interaction) {
 		setOfflineIndicator(interaction.guildId, server, offlineIndicator);
 	}
 
-	await sendMessage(
-		interaction,
-		`The online/offline indicators have been updated for ${server.ip}. The changes will be reflected with the next update, in about 5-6 minutes.`
-	);
+	const localization = serverIndicatorsUpdatedLocalizations[interaction.locale];
+
+	if (localization) {
+		await sendMessage(interaction, `${localization[1]} ${server.ip}. ${localization[2]}`);
+	} else {
+		await sendMessage(
+			interaction,
+			`The online/offline indicators have been updated for ${server.ip}. The changes will be reflected with the next update, in about 5-6 minutes.`
+		);
+	}
 }

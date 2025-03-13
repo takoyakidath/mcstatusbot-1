@@ -5,7 +5,7 @@ import { beaver } from '../functions/consoleLogging.js';
 import { addServer, getIndicators, getServers, setServers } from '../functions/databaseFunctions.js';
 import { findDefaultServer, findServerIndex } from '../functions/findServer.js';
 import { getServerStatus } from '../functions/getServerStatus.js';
-import { isMonitored, isNicknameUsed, isValidServer, noMonitoredServers } from '../functions/inputValidation.js';
+import { isMonitored, isNicknameUsed, isValidIndicator, isValidServer, noMonitoredServers } from '../functions/inputValidation.js';
 import { renameChannels } from '../functions/renameChannels.js';
 import { sendMessage } from '../functions/sendMessage.js';
 import {
@@ -18,6 +18,10 @@ import {
 	nameLocalizations,
 	nicknameDescriptionLocalizations,
 	nicknameLocalizations,
+	offlineOptionDescriptionLocalizations,
+	offlineOptionLocalizations,
+	onlineOptionDescriptionLocalizations,
+	onlineOptionLocalizations,
 	platformDescriptionLocalizations,
 	platformLocalizations,
 	successMessageLocalizations
@@ -53,8 +57,19 @@ export const data = new SlashCommandBuilder()
 		.setDescription('Server platform')
         .setDescriptionLocalizations(platformDescriptionLocalizations)
 		.setRequired(false)
-		.setChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' })
-	)
+		.setChoices({ name: 'Java', value: 'java' }, { name: 'Bedrock', value: 'bedrock' }))
+    .addStringOption((option) => option
+        .setName('online')
+        .setNameLocalizations(onlineOptionLocalizations)
+        .setDescription('Online indicator')
+        .setDescriptionLocalizations(onlineOptionDescriptionLocalizations)
+        .setRequired(false))
+    .addStringOption((option) => option
+        .setName('offline')
+        .setNameLocalizations(offlineOptionLocalizations)
+        .setDescription('Offline indicator')
+        .setDescriptionLocalizations(offlineOptionDescriptionLocalizations)
+        .setRequired(false))
 	.setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
     .setContexts([InteractionContextType.Guild]);
 
@@ -63,6 +78,13 @@ export async function execute(interaction) {
 	if (await isMonitored(interaction.options.getString('ip'), interaction.guildId, interaction)) return;
 	if (await isNicknameUsed(interaction.options.getString('nickname'), interaction.guildId, interaction)) return;
 	if (!(await isValidServer(interaction.options.getString('ip'), interaction))) return;
+
+	const onlineIndicator = interaction.options.getString('online');
+	const offlineIndicator = interaction.options.getString('offline');
+
+	// Make sure indicators (if provided) are valid
+	if (onlineIndicator && !(await isValidIndicator(onlineIndicator, interaction))) return;
+	if (offlineIndicator && !(await isValidIndicator(offlineIndicator, interaction))) return;
 
 	// Unset the default server if the new server is to be the default
 	if (interaction.options.getBoolean('default')) {
@@ -82,7 +104,9 @@ export async function execute(interaction) {
 		ip: interaction.options.getString('ip'),
 		nickname: interaction.options.getString('nickname') || null,
 		default: (await noMonitoredServers(interaction.guildId)) ? true : interaction.options.getBoolean('default') || false,
-		platform: interaction.options.getString('platform') || 'java'
+		platform: interaction.options.getString('platform') || 'java',
+		onlineIndicator: onlineIndicator || null,
+		offlineIndicator: offlineIndicator || null
 	};
 
 	// Create the server category
@@ -166,7 +190,7 @@ export async function execute(interaction) {
 	);
 
 	// Get the online/offline indicators for the server
-	const indicators = await getIndicators(interaction.guildId);
+	const indicators = await getIndicators(interaction.guildId, server);
 
 	// Get the server status and update the channels
 	const serverStatus = await getServerStatus(server);

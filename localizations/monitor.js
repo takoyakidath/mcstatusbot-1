@@ -83,3 +83,27 @@ export const successMessageLocalizations = {
 		default: '¡Servidor monitorizado con éxito y establecido como servidor predeterminado!'
 	}
 };
+
+export const onlineOptionLocalizations = {
+	da: 'online',
+	de: 'online',
+	'es-ES': 'en-línea'
+};
+
+export const onlineOptionDescriptionLocalizations = {
+	da: 'Online-indikator',
+	de: 'Online-Indikator',
+	'es-ES': 'Indicador de conexión'
+};
+
+export const offlineOptionLocalizations = {
+	da: 'offline',
+	de: 'offline',
+	'es-ES': 'desconectado'
+};
+
+export const offlineOptionDescriptionLocalizations = {
+	da: 'Offline-indikator',
+	de: 'Offline-Indikator',
+	'es-ES': 'Indicador de desconexión'
+};

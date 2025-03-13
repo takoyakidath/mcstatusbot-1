@@ -12,9 +12,17 @@ bot to your server.
 
 **Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
+## Mar 2025 - Feature Update
+
+- Customise online/offline indicators for each server!
+- Add ability to enable/disable ephemeral messages
+- Correction of cooldown duration display bug
+- New languages: 🇩🇰 🇪🇸
+
 ## Mar 2025 - Technical Update
 
 - Updates to bot configuration
+- New proxy for all Discord requests!
 - Package updates on server
 - Router configuration update for improved security
 - Add secondary ping server to improve network load handling
@@ -51,15 +59,19 @@ bot to your server.
 
 ## Usage
 
-`/status [server|ip] [type]` Displays the current status and active players for any server
+`/status [server] [platform]` Displays the current status and active players for any server
 
-`/monitor ip [nickname] [type]` Create 2 voice channels that display the status of a Minecraft server and optionally set a nickname
+`/monitor server [nickname] [platform] [default] [online] [offline]` Create 2 voice channels that display the status of a Minecraft server and optionally set a nickname, default status, online, and offline indicator.
 
 `/nickname nickname [server]` Change the nickname of a monitored Minecraft server
 
 `/default server` Set a server to be the default for all commands
 
 `/unmonitor [server|all]` Remove the voice channels for the specified server or all servers
+
+`/ephemeral setting` Enable or disable ephemeral messages. Note: this is a global setting for your Discord server
+
+`/indicators server|all [online] [offline]` Customise the online/offline indicators for each/all servers
 
 `/bug` Send a bug report to the developers
 
@@ -71,10 +83,10 @@ bot to your server.
 
 - [x] Rework status, nickname, and unmonitor commands to include dropdown menus
 - [ ] Rework monitor and nickname commands to include modal workflow
-- [ ] Allow disabling of ephemeral messages
+- [x] Allow disabling of ephemeral messages
 - [ ] Minecraft plugin to allow monitoring of local servers
 - [ ] Add option to monitor server with message embed instead of voice channels
 - [ ] Link Discord usernames to Minecraft accounts for player list in status command (see [this](https://github.com/dommilosz/minecraft-auth) repository)
 - [ ] Add graph support (see [this](https://github.com/cappig/MC-status-bot) repository)
-- [ ] Custom online / offline indicators
+- [x] Custom online / offline indicators
 - [ ] Server offline notifications in channel
