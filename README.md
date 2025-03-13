@@ -81,8 +81,6 @@ As usual, please open an issue here if you notice any bugs/abnormal behaviour. T
 
 ## Roadmap
 
-### Feature Updates
-
 - [x] Rework status, nickname, and unmonitor commands to include dropdown menus
 - [ ] Rework monitor and nickname commands to include modal workflow
 - [x] Allow disabling of ephemeral messages
