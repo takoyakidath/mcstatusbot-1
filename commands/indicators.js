@@ -108,11 +108,11 @@ export async function execute(interaction) {
 	const localization = serverIndicatorsUpdatedLocalizations[interaction.locale];
 
 	if (localization) {
-		await sendMessage(interaction, `${localization[1]} ${server.ip}. ${localization[2]}`);
+		await sendMessage(interaction, `${localization[1]} ${interaction.options.getString('server')}. ${localization[2]}`);
 	} else {
 		await sendMessage(
 			interaction,
-			`The online/offline indicators have been updated for ${server.ip}. The changes will be reflected with the next update, in about 5-6 minutes.`
+			`The online/offline indicators have been updated for ${interaction.options.getString('server')}. The changes will be reflected with the next update, in about 5-6 minutes.`
 		);
 	}
 }

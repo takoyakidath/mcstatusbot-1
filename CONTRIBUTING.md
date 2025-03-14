@@ -1,6 +1,6 @@
 # Contributing Guide:
 
-Please read the information below carefully before adding contributions. Any pull requests that do not conform to the guidelines will be rejected.
+We welcome any and all contributions to the bot! Here we provide some basic steps and guidelines for code/language contributions. Please ensure that you follow any notices to ensure smooth approval of your PR!
 
 ## Adding New Localizations:
 
@@ -35,20 +35,12 @@ To add new localizations:
 
 ### Notices:
 
-- Only add / modify one language at a time. PRs that modify more than one language will be rejected.
-
-- Do not edit any other files / code in a language PR. Open a separate PR for code modifications. Any language PRs that modify code will be rejected.
-
-- Do not add or delete any files. Any PR that violates this rule will be rejected.
-
+- Only add / modify one language at a time.
+- Do not edit any other files / code in a language PR. Open a separate PR for code modifications.
+- Do not add or delete any files.
 - Do not include profane language in a translation. We will check. First offense will lead to rejection of PR with warning. Any further offense will result in a ban.
-
 - Multiple PRs for the same language will be treated in the order they were received. Should the merge of a prior PR for your language cause a conflict with your PR, we will notify you with a comment and allow you to correct your translations.
-
 - Should there be minor errors in the PR, we will add a comment and allow you to correct the PR.
-
-- Any egregious violations of the guidelines will result in a PR rejection. If your PR is rejected, your branch will be deleted too.
-
 - Once merged, the bot will incorporate the changes into the subsequent monthly update. Depending on when your changes are accepted, they might take a few weeks to show up.
 
 Thank you for your contribution! When your PR is merged, you will automatically be listed as a contributor! If you have any questions, please open a github issue.
