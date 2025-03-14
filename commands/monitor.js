@@ -105,8 +105,8 @@ export async function execute(interaction) {
 		nickname: interaction.options.getString('nickname') || null,
 		default: (await noMonitoredServers(interaction.guildId)) ? true : interaction.options.getBoolean('default') || false,
 		platform: interaction.options.getString('platform') || 'java',
-		onlineIndicator: onlineIndicator || null,
-		offlineIndicator: offlineIndicator || null
+		onlineIndicator: onlineIndicator || 'Online',
+		offlineIndicator: offlineIndicator || 'Offline'
 	};
 
 	// Create the server category

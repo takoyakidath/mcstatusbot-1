@@ -12,12 +12,12 @@ export const data = new SlashCommandBuilder()
 
 const defaultListLocalizations = [
 	{
-		name: '/status [server|ip]',
+		name: '/status [server]',
 		value: 'Displays the current status and active players for any server'
 	},
 	{
-		name: '/monitor ip [nickname] [default (true/false)]',
-		value: 'Create 2 voice channels that display the status of a Minecraft server and optionally set a nickname'
+		name: '/monitor server [nickname] [default (true/false)] [platform (java/bedrock)] [online] [offline]',
+		value: 'Create 2 voice channels that display the status of a Minecraft server and optionally set a nickname, default status, platform, and online/offline indicators'
 	},
 	{
 		name: '/nickname nickname [server]',
@@ -30,6 +30,14 @@ const defaultListLocalizations = [
 	{
 		name: '/unmonitor [server|all]',
 		value: 'Unmonitor the specified server or all servers'
+	},
+	{
+		name: '/ephemeral enabled (true/false)',
+		value: 'Enable or disable ephemeral messages'
+	},
+	{
+		name: '/indicators [server|all] [online] [offline]',
+		value: 'Change the online and offline indicators for a server'
 	},
 	{
 		name: '/bug',
