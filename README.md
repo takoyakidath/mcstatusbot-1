@@ -38,7 +38,7 @@ As usual, please open an issue here if you notice any bugs/abnormal behaviour. T
 
 **Aternos/other hosting users:** Underscores are not allowed in Domain names! Please change your server address to remove underscores.
 
-**Local IP Addresses** The bot will now filter out local IP addresses (192.168, 127.0.0, 10.0 etc). The bot will now show `Status: Error` if your server's IP address has been filtered. We recommend you use an ingress adaptor like [Minekube](https://connect.minekube.com/) to make your server securely accessible via a domain, and then monitor that domain.
+**Local IP Addresses** The bot will now filter out private IP addresses (192.168, 127.0.0, 10.0 etc) which are inaccessible to the bot. The bot will now show `Status: Error` if your server's IP address has been filtered. We recommend you use an ingress adaptor like [Minekube](https://connect.minekube.com/) to make your server securely accessible via a domain, and then monitor that domain.
 
 ## Features
 
