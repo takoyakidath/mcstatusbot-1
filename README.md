@@ -10,6 +10,8 @@ A simple [Discord.js](https://www.npmjs.com/package/discord.js) bot that display
 **To use:** Simply [invite](https://discord.com/api/oauth2/authorize?client_id=788083161296273517&permissions=269485072&scope=bot%20applications.commands) the
 bot to your server.
 
+**Having trouble?** Check out the [FAQ](https://github.com/RahulR100/mcstatusbot/issues/154)
+
 **Want to contribute a translation?** Read the [contributing guide](https://github.com/tedztar/mcstatusbot/blob/V0.2/CONTRIBUTING.md) here.
 
 ## Mar 2025 - Feature Update
