@@ -10,6 +10,9 @@ export const once = false;
 export async function execute(interaction) {
 	if (!interaction.isChatInputCommand()) return;
 
+	const command = interaction.client.commands.get(interaction.commandName);
+	if (!command) return;
+
 	// If the command was executed from a guild, check if the guild has ephemeral responses enabled
 	// All DM messages are ephemeral by default
 	let ephemeral = true;

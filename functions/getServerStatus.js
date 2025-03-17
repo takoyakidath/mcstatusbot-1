@@ -13,7 +13,7 @@ const options_low = {
 };
 
 export async function getServerStatus(server, priority = 'high_priority') {
-	if (!validateHost(server.ip)) {
+	if (!validateHost(server.ip).valid) {
 		throw new Error('Invalid server IP');
 	}
 

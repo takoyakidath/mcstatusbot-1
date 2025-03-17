@@ -74,19 +74,28 @@ export const removingDefaultServerLocalizations = {
 		'¡Hay varios servidores monitoreados y este servidor es el servidor predeterminado! Establezca otro servidor como servidor predeterminado antes de dejar de monitorear este servidor o use "/unmonitor all" para dejar de monitorear todos los servidores.'
 };
 
+export const invalidPortLocalizations = {
+	da: 'Dette er ikke en gyldig port!',
+	de: 'Dies ist kein gültiger Port!',
+	'es-ES': '¡Este no es un puerto válido!'
+};
+
+export const invalidBogonLocalizations = {
+	da: 'Dette er en privat IP-adresse! Botten kan ikke få adgang til denne IP-adresse.',
+	de: 'Dies ist eine private IP-Adresse! Der Bot kann nicht auf diese IP-Adresse zugreifen.',
+	'es-ES': '¡Esta es una dirección IP privada! El bot no puede acceder a ella.'
+};
+
+export const invalidUnderscoreLocalizations = {
+	da: 'Understregninger er ikke tilladt i domænenavne!',
+	de: 'Unterstriche sind in Domänennamen nicht erlaubt!',
+	'es-ES': '¡Los guiones bajos no están permitidos en los nombres de dominio!'
+};
+
 export const invalidServerLocalizations = {
-	da: {
-		1: 'Dette er ikke en gyldig IP-adresse eller et gyldigt domænenavn',
-		2: '(understregninger er ikke tilladt)!'
-	},
-	de: {
-		1: 'Dies ist keine gültige IP-Adresse oder kein gültiger Domänenname',
-		2: '(Unterstriche sind nicht erlaubt)!'
-	},
-	'es-ES': {
-		1: 'Esto no es una dirección IP válida o un nombre de dominio válido',
-		2: '(los guiones bajos no están permitidos)!'
-	}
+	da: 'Dette er ikke en gyldig IP-adresse eller domænenavn!',
+	de: 'Dies ist keine gültige IP-Adresse oder Domänenname!',
+	'es-ES': '¡Esta no es una dirección IP o nombre de dominio válido!'
 };
 
 export const invalidIndicatorLocalizations = {

@@ -12,7 +12,10 @@ import {
 	removingDefaultServerLocalizations,
 	restrictedKeywordLocalizations,
 	restrictedKeywordNicknameLocalizations,
-	invalidIndicatorLocalizations
+	invalidIndicatorLocalizations,
+	invalidPortLocalizations,
+	invalidBogonLocalizations,
+	invalidUnderscoreLocalizations
 } from '../localizations/inputValidation.js';
 import { numberOfServers } from './databaseFunctions.js';
 import { findDefaultServer, findServer } from './findServer.js';
@@ -143,16 +146,32 @@ export async function multipleMonitoredServers(guildId) {
 }
 
 export async function isValidServer(server, interaction) {
-	if (!validateHost(server)) {
-		if (interaction) {
-			const localizedError = invalidServerLocalizations[interaction.locale];
+	const serverCheck = validateHost(server);
 
-			if (localizedError) {
-				await sendMessage(interaction, `${localizedError[1]} ${server.includes('_') ? localizedError[2] : ''}`);
-			} else {
-				await sendMessage(interaction, `This is not a valid IP address or domain name ${server.includes('_') ? '(underscores are not allowed)!' : ''}`);
+	if (!serverCheck.valid) {
+		if (interaction) {
+			switch (serverCheck.reason) {
+				case 'port':
+					await sendMessage(interaction, invalidPortLocalizations[interaction.locale] ?? 'An invalid port was supplied!');
+					break;
+
+				case 'bogon':
+					await sendMessage(
+						interaction,
+						invalidBogonLocalizations[interaction.locale] ?? 'This is a private IP address! The bot is not able to access this IP address.'
+					);
+					break;
+
+				case 'underscore':
+					await sendMessage(interaction, invalidUnderscoreLocalizations[interaction.locale] ?? 'Underscores are not allowed in domain names!');
+					break;
+
+				default:
+					await sendMessage(interaction, invalidServerLocalizations[interaction.locale] ?? 'This is not a valid IP address or domain name!');
+					break;
 			}
 		}
+
 		return false;
 	}
 
