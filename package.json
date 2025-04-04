@@ -3,7 +3,7 @@
 	"version": "2025.03.13",
 	"description": "A simple Discord.js bot that pings Minecraft servers using the \"mcping-js\" node module.",
 	"engines": {
-		"node": "20.x"
+    "node": "20.x"
 	},
 	"scripts": {
 		"start": "node index.js",
@@ -13,17 +13,17 @@
 	"type": "module",
 	"main": "index.js",
 	"dependencies": {
-		"beaver-logs": "^0.1.0",
+		"beaver-logs": "^0.1.1",
 		"bogon": "^1.1.0",
-		"bufferutil": "^4.0.8",
-		"discord-hybrid-sharding": "^2.1.3",
-		"discord.js": "^14.7.1",
-		"dotenv": "^16.0.3",
-		"mongoose": "^8.1.1",
-		"node-mcstatus": "^1.2.0",
-		"unidecode": "^1.0.1",
-		"utf-8-validate": "^6.0.3",
-		"validator": "^13.9.0",
+		"bufferutil": "^4.0.9",
+		"discord-hybrid-sharding": "^2.2.6",
+		"discord.js": "^14.18.0",
+		"dotenv": "^16.4.7",
+		"mongoose": "^8.13.2",
+		"node-mcstatus": "^1.2.1",
+		"unidecode": "^1.1.0",
+		"utf-8-validate": "^6.0.5",
+		"validator": "^13.15.0",
 		"zlib-sync": "^0.1.9"
 	},
 	"repository": {
@@ -32,6 +32,6 @@
 	},
 	"license": "MIT",
 	"devDependencies": {
-		"prettier": "^3.0.3"
+		"prettier": "^3.5.3"
 	}
 }
